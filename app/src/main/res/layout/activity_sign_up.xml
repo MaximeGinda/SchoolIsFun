@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".SignUpActivity">
+
+    <TextView
+        android:id="@+id/twSignup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center_horizontal"
+        android:text="@string/signUp"
+        android:textSize="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textAllCaps="true"/>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/username"
+        app:layout_constraintTop_toBottomOf="@+id/twSignup"
+        tools:layout_editor_absoluteX="16dp">
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/rbParent"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/radiobutton_left_selector"
+            android:button="@android:color/transparent"
+            android:checked="true"
+            android:gravity="center"
+            android:onClick="onRadioButtonClicked"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="20dp"
+            android:text="@string/parent"
+            android:textColor="@android:color/white" />
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/rbChild"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/radiobutton_right_selector"
+            android:button="@android:color/transparent"
+            android:checked="false"
+            android:gravity="center"
+            android:onClick="onRadioButtonClicked"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="20dp"
+            android:text="@string/child"
+            android:textColor="@android:color/white" />
+    </RadioGroup>
+
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="345dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="220dp"
+        android:background="@drawable/etbackground"
+        android:fontFamily="@font/roboto"
+        android:hint="@string/prompt_email"
+        android:inputType="textEmailAddress"
+        android:padding="20dp"
+        android:selectAllOnFocus="true"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="345dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="@string/prompt_password"
+        android:fontFamily="@font/roboto"
+        android:textSize="15dp"
+        android:imeActionLabel="@string/action_sign_in_short"
+        android:imeOptions="actionDone"
+        android:inputType="textPassword"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username"
+        android:padding="20dp"
+        android:background="@drawable/etbackground"/>
+
+    <Button
+        android:id="@+id/signup"
+        android:layout_width="345dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="65dp"
+        android:backgroundTint="@color/main"
+        android:fontFamily="@font/roboto"
+        android:text="@string/signUp"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintVertical_bias="1.0"
+
+        />
+
+    <View
+        android:layout_width="135dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/facebook"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioButton"
+        android:background="#BAB3B3"
+        app:layout_constraintVertical_bias="0.505" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/facebook"
+        app:layout_constraintTop_toBottomOf="@+id/radioButton"
+        android:text="@string/or"
+        android:fontFamily="@font/roboto"
+        android:textSize="15dp"
+        android:textColor="#8B959A"
+        android:textAllCaps="true"/>
+    <View
+        android:layout_width="135dp"
+        android:layout_height="1dp"
+        android:layout_marginEnd="24dp"
+        android:background="#BAB3B3"
+        app:layout_constraintBottom_toTopOf="@+id/facebook"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioButton"
+        app:layout_constraintVertical_bias="0.494" />
+
+    <ImageButton
+        android:id="@+id/twitter"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="480dp"
+        android:background="@drawable/buttonloginbackground"
+        android:backgroundTint="#76A9EA"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints,SpeakableTextPresentCheck"
+        android:focusable="true"
+        android:clickable="true"
+        android:src="@drawable/twitter" />
+
+    <ImageButton
+        android:id="@+id/facebook"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="480dp"
+        android:background="@drawable/buttonloginbackground"
+        android:backgroundTint="#475993"
+        app:layout_constraintEnd_toStartOf="@+id/google"
+        app:layout_constraintStart_toEndOf="@+id/twitter"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints,SpeakableTextPresentCheck"
+        android:focusable="true"
+        android:clickable="true"
+        android:src="@drawable/facebook"/>
+
+    <ImageButton
+        android:id="@+id/google"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="480dp"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/buttonloginbackground"
+        android:backgroundTint="#DB4A39"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints,SpeakableTextPresentCheck"
+        android:focusable="true"
+        android:clickable="true"
+        android:src="@drawable/google"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup">
+
+        <TextView
+            android:id="@+id/dhAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_weight="0.1"
+            android:fontFamily="@font/roboto"
+            android:gravity="center_horizontal"
+            android:text="@string/hAccount"
+            android:textColor="@color/textColor"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/signin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:background="@drawable/linkbackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/roboto"
+            android:text="@string/signIn"
+            android:textColor="@color/main"
+            android:textSize="15dp"
+            tools:ignore="TouchTargetSizeCheck" />
+    </LinearLayout>
+
+    <RadioButton
+        android:id="@+id/radioButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="384dp"
+        android:fontFamily="@font/roboto"
+        android:text="@string/policy"
+        android:textColor="@color/textColor"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.157"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:buttonTint="@color/main"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

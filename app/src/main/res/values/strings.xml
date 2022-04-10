@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">SchoolIsFun</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email or Username</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Login</string>
+    <string name="action_sign_in_short">Login</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="forgotPWD">Forgot password?</string>
+    <string name="dhAccount">Don’t have an account ?</string>
+    <string name="hAccount">Already have an account ?</string>
+    <string name="signUp">Sign Up</string>
+    <string name="signUpChild">Sign Up As A Child</string>
+    <string name="signIn">Sign In</string>
+    <string name="or">Or</string>
+    <string name="policy">I agree with Private Policy</string>
+    <string name="parent">I am a parent</string>
+    <string name="child">I am a child</string>
+    <string name="Username">Username</string>
+    <string name="Name">Name</string>
+    <string name="Firstname">Firstname</string>
+    <string name="Phonenumber">Phone Number (optionnal)</string>
+    <string name="next">Next</string>
+    <string name="childInfo">Child Informations</string>
+    <string name="choiceClasses">Choice of classes</string>
+    <string name="schoolYears">School Years :</string>
+    <string name="schoolLevel">School Level :</string>
+    <string name="choicePlans">Choice of plans</string>
+
+    <string-array name="plan">
+        <item>Progression Plan</item>
+        <item>Premium Plan</item>
+    </string-array>
+
+    <string-array name="level">
+        <item>6ème</item>
+        <item>5ème</item>
+        <item>4ème</item>
+        <item>3ème</item>
+        <item>2nde</item>
+        <item>1ere</item>
+        <item>terminale</item>
+    </string-array>
+
+</resources>
