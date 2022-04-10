@@ -3,9 +3,6 @@ package com.example.schoolisfun;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
 
 import java.util.Arrays;
 
@@ -28,7 +27,7 @@ public class ChildChoice extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private AutoCompleteTextView actvPlan, actvLevel;
+    private AutoCompleteTextView actvLevel, actvPlan;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -70,17 +69,17 @@ public class ChildChoice extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_child_choice, container, false);
-        actvPlan = (AutoCompleteTextView) v.findViewById(R.id.actvPlan);
+
         actvLevel = (AutoCompleteTextView) v.findViewById(R.id.actvLevel);
+        actvPlan = (AutoCompleteTextView) v.findViewById(R.id.actvPlan);
 
         // SI BUG METTRE DANS LE RESUME
-        String[] plans = getResources().getStringArray(R.array.plan);
-
-        ArrayAdapter<String> arrayAdapterPlan = new ArrayAdapter<String>(getActivity(), R.layout.dropdown_item, plans);
-        actvPlan.setAdapter(arrayAdapterPlan);
         String[] levels = getResources().getStringArray(R.array.level);
         ArrayAdapter<String> arrayAdapterLevel = new ArrayAdapter<String>(getActivity(), R.layout.dropdown_item, levels);
         actvLevel.setAdapter(arrayAdapterLevel);
+        String[] plans = getResources().getStringArray(R.array.plan);
+        ArrayAdapter<String> arrayAdapterPlan = new ArrayAdapter<String>(getActivity(), R.layout.dropdown_item, plans);
+        actvPlan.setAdapter(arrayAdapterPlan);
 
         Button btDialog = (Button) v.findViewById(R.id.btDialog);
         btDialog.setOnClickListener(new View.OnClickListener() {
@@ -113,6 +112,16 @@ public class ChildChoice extends Fragment {
                 // create and show the alert dialog
                 AlertDialog dialog = builder.create();
                 dialog.show();
+
+            }
+        });
+
+        Button btSignUpChildFragNext = (Button) v.findViewById(R.id.btSignUpChildFragNext);
+        btSignUpChildFragNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), actvLevel.getText().toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), actvPlan.getText().toString(), Toast.LENGTH_SHORT).show();
 
             }
         });
