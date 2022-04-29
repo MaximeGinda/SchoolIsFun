@@ -11,25 +11,25 @@
     tools:context=".SignUpActivity">
 
     <TextView
-        android:id="@+id/twSignup"
+        android:id="@+id/tvSignup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:fontFamily="@font/roboto_bold"
         android:gravity="center_horizontal"
         android:text="@string/signUp"
+        android:textAllCaps="true"
         android:textSize="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textAllCaps="true"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/username"
-        app:layout_constraintTop_toBottomOf="@+id/twSignup"
+        app:layout_constraintBottom_toTopOf="@+id/etEmail"
+        app:layout_constraintTop_toBottomOf="@+id/tvSignup"
         tools:layout_editor_absoluteX="16dp">
 
         <androidx.appcompat.widget.AppCompatRadioButton
@@ -40,12 +40,12 @@
             android:background="@drawable/radiobutton_left_selector"
             android:button="@android:color/transparent"
             android:checked="true"
+            android:fontFamily="@font/roboto_bold"
             android:gravity="center"
             android:onClick="onRadioButtonClicked"
-            android:fontFamily="@font/roboto_bold"
-            android:textSize="20dp"
             android:text="@string/parent"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:textSize="20dp" />
 
         <androidx.appcompat.widget.AppCompatRadioButton
             android:id="@+id/rbChild"
@@ -55,17 +55,17 @@
             android:background="@drawable/radiobutton_right_selector"
             android:button="@android:color/transparent"
             android:checked="false"
+            android:fontFamily="@font/roboto_bold"
             android:gravity="center"
             android:onClick="onRadioButtonClicked"
-            android:fontFamily="@font/roboto_bold"
-            android:textSize="20dp"
             android:text="@string/child"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:textSize="20dp" />
     </RadioGroup>
 
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/etEmail"
         android:layout_width="345dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="220dp"
@@ -82,22 +82,22 @@
 
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/etPassword"
         android:layout_width="345dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:hint="@string/prompt_password"
+        android:background="@drawable/etbackground"
         android:fontFamily="@font/roboto"
-        android:textSize="15dp"
+        android:hint="@string/prompt_password"
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
+        android:padding="20dp"
         android:selectAllOnFocus="true"
+        android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username"
-        android:padding="20dp"
-        android:background="@drawable/etbackground"/>
+        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
 
     <Button
         android:id="@+id/signup"
@@ -112,7 +112,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword"
         app:layout_constraintVertical_bias="1.0"
 
         />
@@ -121,23 +121,24 @@
         android:layout_width="135dp"
         android:layout_height="1dp"
         android:layout_marginStart="24dp"
+        android:background="#BAB3B3"
         app:layout_constraintBottom_toTopOf="@+id/facebook"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioButton"
-        android:background="#BAB3B3"
         app:layout_constraintVertical_bias="0.505" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/facebook"
-        app:layout_constraintTop_toBottomOf="@+id/radioButton"
-        android:text="@string/or"
         android:fontFamily="@font/roboto"
-        android:textSize="15dp"
+        android:gravity="center_horizontal"
+        android:text="@string/or"
+        android:textAllCaps="true"
         android:textColor="#8B959A"
-        android:textAllCaps="true"/>
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/facebook"
+        app:layout_constraintTop_toBottomOf="@+id/radioButton" />
+
     <View
         android:layout_width="135dp"
         android:layout_height="1dp"
@@ -156,12 +157,12 @@
         android:layout_marginTop="480dp"
         android:background="@drawable/buttonloginbackground"
         android:backgroundTint="#76A9EA"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/twitter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints,SpeakableTextPresentCheck"
-        android:focusable="true"
-        android:clickable="true"
-        android:src="@drawable/twitter" />
+        tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/facebook"
@@ -170,13 +171,13 @@
         android:layout_marginTop="480dp"
         android:background="@drawable/buttonloginbackground"
         android:backgroundTint="#475993"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/facebook"
         app:layout_constraintEnd_toStartOf="@+id/google"
         app:layout_constraintStart_toEndOf="@+id/twitter"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints,SpeakableTextPresentCheck"
-        android:focusable="true"
-        android:clickable="true"
-        android:src="@drawable/facebook"/>
+        tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/google"
@@ -186,12 +187,12 @@
         android:layout_marginEnd="25dp"
         android:background="@drawable/buttonloginbackground"
         android:backgroundTint="#DB4A39"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/google"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints,SpeakableTextPresentCheck"
-        android:focusable="true"
-        android:clickable="true"
-        android:src="@drawable/google"/>
+        tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -236,6 +237,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="384dp"
+        android:buttonTint="@color/main"
         android:fontFamily="@font/roboto"
         android:text="@string/policy"
         android:textColor="@color/textColor"
@@ -243,9 +245,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.157"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:buttonTint="@color/main"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

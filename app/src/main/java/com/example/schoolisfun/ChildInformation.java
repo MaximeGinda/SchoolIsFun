@@ -7,12 +7,19 @@ import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.schoolisfun.data.ChildData;
+import com.example.schoolisfun.data.RoomDB;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,8 +34,14 @@ public class ChildInformation extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     private Button btSignUpChildFragNext;
-    private EditText etUserName, etName, etFirstName, etPhoneNumber;
+    private EditText etUserName, etLastName, etFirstName, etPhoneNumber;
     private boolean activated;
+
+
+    String sUserName;
+    String sLastName;
+    String sFirstName;
+    String sPhoneNumber;
 
     private String mParam1;
     private String mParam2;
@@ -64,18 +77,26 @@ public class ChildInformation extends Fragment {
 
         btSignUpChildFragNext = (Button) v.findViewById(R.id.btSignUpChildFragNext);
         etUserName = (EditText) v.findViewById(R.id.etUsername);
-        etName = (EditText) v.findViewById(R.id.etName);
+        etLastName = (EditText) v.findViewById(R.id.etLastName);
         etFirstName = (EditText) v.findViewById(R.id.etFirstName);
+        etPhoneNumber = (EditText) v.findViewById(R.id.etPhoneNumber);
 
         etUserName.addTextChangedListener(textWatcher);
-        etName.addTextChangedListener(textWatcher);
+        etLastName.addTextChangedListener(textWatcher);
         etFirstName.addTextChangedListener(textWatcher);
+//        etPhoneNumber.addTextChangedListener(textWatcher);
 
 
-        checkFieldsForEmptyValues();
-        btSignUpChildFragNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        ChildData childData;
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            childData = (ChildData) bundle.getSerializable("childData");
+
+
+            checkFieldsForEmptyValues();
+            btSignUpChildFragNext.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
                 /*Bundle bundle = new Bundle();
 
                 bundle.putString("Name",String.valueOf(etName.getText()));
@@ -85,18 +106,33 @@ public class ChildInformation extends Fragment {
                 bundle.putString("UserName", String.valueOf(etUserName.getText()));
 
                 bundle.putString("PhoneNumber", String.valueOf(etPhoneNumber.getText()));*/
-                if(activated){
-                    ChildInformationActivity childInformationActivity = (ChildInformationActivity) getActivity();
-                    childInformationActivity.fragment1to2();
-                }
-                else{
-                    Toast.makeText(getActivity(), "You have to complete form", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
 
+                    if (activated) {
+                        childData.setUserName(sUserName);
+                        childData.setFirstName(sFirstName);
+                        childData.setLastName(sLastName);
+                        childData.setPhoneNumber(sPhoneNumber);
+
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("childData", childData);
+
+//                        ChildInformationActivity childInformationActivity = (ChildInformationActivity) getActivity();
+//                        childInformationActivity.fragment1to2();
+                        ChildChoice childChoice = new ChildChoice();
+                        childChoice.setArguments(bundle);
+                        requireActivity().getSupportFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.childFrameLayout, childChoice)
+                                .setReorderingAllowed(true)
+                                .addToBackStack(null)
+                                .commit();
+                    } else {
+                        Toast.makeText(getActivity(), "You have to complete form", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
         return v;
-
     }
 
     @Override
@@ -127,11 +163,13 @@ public class ChildInformation extends Fragment {
 
     private void checkFieldsForEmptyValues() {
 
-        String s1 = etUserName.getText().toString();
-        String s2 = etName.getText().toString();
-        String s3 = etFirstName.getText().toString();
+        sUserName = etUserName.getText().toString();
+        sLastName = etLastName.getText().toString();
+        sFirstName = etFirstName.getText().toString();
+        sPhoneNumber = etPhoneNumber.getText().toString();
 
-        if (s1.length() > 0 && s2.length() > 0 && s3.length() > 0) {
+
+        if (sUserName.length() > 0 && sLastName.length() > 0 && sFirstName.length() > 0) {
             activated = true;
             //btSignUpChildFragNext.setEnabled(true);
         } else {

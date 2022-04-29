@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">SchoolIsFun</string>
     <string name="title_activity_login">LoginActivity</string>
-    <string name="prompt_email">Email or Username</string>
+    <string name="prompt_email_or_username">Email or Username</string>
+    <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Login</string>
     <string name="action_sign_in_short">Login</string>
@@ -20,8 +21,8 @@
     <string name="parent">I am a parent</string>
     <string name="child">I am a child</string>
     <string name="Username">Username</string>
-    <string name="Name">Name</string>
-    <string name="Firstname">Firstname</string>
+    <string name="LastName">Last Name</string>
+    <string name="Firstname">First Name</string>
     <string name="Phonenumber">Phone Number (optionnal)</string>
     <string name="next">Next</string>
     <string name="childInfo">Child Informations</string>

@@ -3,23 +3,36 @@ package com.example.schoolisfun;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.schoolisfun.data.ChildData;
+import com.example.schoolisfun.data.RoomDB;
 import com.example.schoolisfun.ui.login.LoginActivity;
 
-public class SignUpActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
 
+public class SignUpActivity extends AppCompatActivity {
     AppCompatRadioButton rbParent, rbChild;
+    EditText etEmail, etPassword;
+    ImageButton ibGoogle;
     int nbClickRB;
     boolean parent = true;
+
+    RoomDB database;
+    List<ChildData> childDataList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,15 +41,24 @@ public class SignUpActivity extends AppCompatActivity {
 
         rbParent = findViewById(R.id.rbParent);
         rbChild = findViewById(R.id.rbChild);
+        etEmail = findViewById(R.id.etEmail);
+        etPassword = findViewById(R.id.etPassword);
+        ibGoogle = findViewById(R.id.google);
+
+        //Initialize database
+        database = RoomDB.getInstance(this);
+        //Store database value in data list
+        childDataList = database.childDao().getAll();
 
         // Permet de reinitialiser le radioButton de policy
-        RadioButton radioButton = (RadioButton)findViewById (R.id.radioButton);
+        RadioButton radioButton = (RadioButton) findViewById(R.id.radioButton);
         radioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 nbClickRB++;
-                if(nbClickRB%2 == 0) {
-                    radioButton.setChecked(false);;
+                if (nbClickRB % 2 == 0) {
+                    radioButton.setChecked(false);
+                    ;
                 }
             }
         });
@@ -57,10 +79,49 @@ public class SignUpActivity extends AppCompatActivity {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!parent){
-                    Intent intent = new Intent(SignUpActivity.this, ChildInformationActivity.class);
-                    startActivity(intent);
+                if (!parent) {
+                    //Get string from edit text
+                    String emailText = etEmail.getText().toString().trim();
+                    String passwordText = etPassword.getText().toString().trim();
+                    //Check condition
+                    if (database.childDao().findUserWithEmail(emailText).isEmpty()) {
+                        if (!emailText.equals("") && !passwordText.equals("")) {
+                            //When email and password are not empty and that email is not in database, Initialize main data
+                            ChildData childData = new ChildData();
+                            childData.setEmail(emailText);
+                            childData.setPassword(passwordText);
+
+                            //Insert text in database
+
+                            //database.childDao().insert(childData);
+
+
+                            //Clear edit text of password
+                            etPassword.setText("");
+                            //Notify when data is inserted
+                            childDataList.clear();
+                            Intent intent = new Intent(SignUpActivity.this, ChildInformationActivity.class);
+                            intent.putExtra("child_data", childData);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(SignUpActivity.this, "Please fill in all the required fields.", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(SignUpActivity.this, "Email already in database", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
+            }
+        });
+
+//        // Reset de la database si clic sur le bouton Google
+        ibGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Delete all data from database
+                database.childDao().reset(childDataList);
+                childDataList.clear();
+                childDataList.addAll(database.childDao().getAll());
             }
         });
     }

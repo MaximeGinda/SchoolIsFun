@@ -12,7 +12,7 @@
     tools:context=".ChildChoice">
 
     <TextView
-        android:id="@+id/twSignup"
+        android:id="@+id/tvSignup"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
@@ -34,7 +34,7 @@
         android:layout_marginTop="55dp"
         android:background="#BAB3B3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/twSignup" />
+        app:layout_constraintTop_toBottomOf="@+id/tvSignup" />
 
     <TextView
         android:id="@+id/textView3"
@@ -49,7 +49,7 @@
         android:textSize="20dp"
         app:layout_constraintEnd_toStartOf="@+id/view4"
         app:layout_constraintStart_toEndOf="@+id/view3"
-        app:layout_constraintTop_toBottomOf="@+id/twSignup" />
+        app:layout_constraintTop_toBottomOf="@+id/tvSignup" />
 
     <View
         android:id="@+id/view4"
@@ -59,7 +59,7 @@
         android:layout_marginEnd="24dp"
         android:background="#BAB3B3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/twSignup" />
+        app:layout_constraintTop_toBottomOf="@+id/tvSignup" />
 
 
     <Button

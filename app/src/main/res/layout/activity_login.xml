@@ -19,8 +19,8 @@
         android:fontFamily="@font/roboto_bold"
         android:gravity="center_horizontal"
         android:text="@string/action_sign_in"
-        android:textSize="60dp"
         android:textAllCaps="true"
+        android:textSize="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,7 +32,7 @@
         android:layout_marginTop="220dp"
         android:background="@drawable/etbackground"
         android:fontFamily="@font/roboto"
-        android:hint="@string/prompt_email"
+        android:hint="@string/prompt_email_or_username"
         android:inputType="textEmailAddress"
         android:padding="20dp"
         android:selectAllOnFocus="true"
@@ -47,18 +47,18 @@
         android:layout_width="345dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:hint="@string/prompt_password"
+        android:background="@drawable/etbackground"
         android:fontFamily="@font/roboto"
-        android:textSize="15dp"
+        android:hint="@string/prompt_password"
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
+        android:padding="20dp"
         android:selectAllOnFocus="true"
+        android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username"
-        android:padding="20dp"
-        android:background="@drawable/etbackground"/>
+        app:layout_constraintTop_toBottomOf="@+id/username" />
 
     <Button
         android:id="@+id/login"
@@ -101,23 +101,24 @@
         android:layout_width="135dp"
         android:layout_height="1dp"
         android:layout_marginStart="24dp"
+        android:background="#BAB3B3"
         app:layout_constraintBottom_toTopOf="@+id/facebook"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/forpwd"
-        android:background="#BAB3B3"
         app:layout_constraintVertical_bias="0.505" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/facebook"
-        app:layout_constraintTop_toBottomOf="@+id/forpwd"
-        android:text="@string/or"
         android:fontFamily="@font/roboto"
-        android:textSize="15dp"
+        android:gravity="center_horizontal"
+        android:text="@string/or"
+        android:textAllCaps="true"
         android:textColor="#8B959A"
-        android:textAllCaps="true"/>
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/facebook"
+        app:layout_constraintTop_toBottomOf="@+id/forpwd" />
+
     <View
         android:layout_width="135dp"
         android:layout_height="1dp"
@@ -136,12 +137,12 @@
         android:layout_marginTop="480dp"
         android:background="@drawable/buttonloginbackground"
         android:backgroundTint="#76A9EA"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/twitter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints,SpeakableTextPresentCheck"
-        android:focusable="true"
-        android:clickable="true"
-        android:src="@drawable/twitter" />
+        tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/facebook"
@@ -150,13 +151,13 @@
         android:layout_marginTop="480dp"
         android:background="@drawable/buttonloginbackground"
         android:backgroundTint="#475993"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/facebook"
         app:layout_constraintEnd_toStartOf="@+id/google"
         app:layout_constraintStart_toEndOf="@+id/twitter"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints,SpeakableTextPresentCheck"
-        android:focusable="true"
-        android:clickable="true"
-        android:src="@drawable/facebook"/>
+        tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/google"
@@ -166,12 +167,12 @@
         android:layout_marginEnd="25dp"
         android:background="@drawable/buttonloginbackground"
         android:backgroundTint="#DB4A39"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/google"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints,SpeakableTextPresentCheck"
-        android:focusable="true"
-        android:clickable="true"
-        android:src="@drawable/google"/>
+        tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
 
     <LinearLayout
         android:id="@+id/linearLayout"

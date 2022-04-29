@@ -3,6 +3,7 @@ package com.example.schoolisfun;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,12 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.schoolisfun.data.ChildData;
+import com.example.schoolisfun.data.RoomDB;
+
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +34,10 @@ public class ChildChoice extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     private AutoCompleteTextView actvLevel, actvPlan;
+    ArrayList<String> chosenClasses;
+
+    RoomDB database;
+    List<ChildData> childDataList = new ArrayList<>();
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -70,8 +80,14 @@ public class ChildChoice extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_child_choice, container, false);
 
+        Button btDialog = (Button) v.findViewById(R.id.btDialog);
         actvLevel = (AutoCompleteTextView) v.findViewById(R.id.actvLevel);
         actvPlan = (AutoCompleteTextView) v.findViewById(R.id.actvPlan);
+
+        //Initialize database
+        database = RoomDB.getInstance(getActivity());
+        //Store database value in data list
+        childDataList = database.childDao().getAll();
 
         // SI BUG METTRE DANS LE RESUME
         String[] levels = getResources().getStringArray(R.array.level);
@@ -81,7 +97,7 @@ public class ChildChoice extends Fragment {
         ArrayAdapter<String> arrayAdapterPlan = new ArrayAdapter<String>(getActivity(), R.layout.dropdown_item, plans);
         actvPlan.setAdapter(arrayAdapterPlan);
 
-        Button btDialog = (Button) v.findViewById(R.id.btDialog);
+
         btDialog.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Do something in response to button click
@@ -92,6 +108,7 @@ public class ChildChoice extends Fragment {
                 // add a checkbox list
                 String[] classes = {"Physics", "Mathematics", "Computer Science", "English", "French"};
                 boolean[] classesCheckedItems = {false, false, false, false, false};
+                chosenClasses = new ArrayList<>();
                 builder.setMultiChoiceItems(classes, classesCheckedItems, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which, boolean isChecked) {
@@ -104,7 +121,12 @@ public class ChildChoice extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // user clicked OK
-                        Toast.makeText(getContext(), Arrays.toString(classesCheckedItems), Toast.LENGTH_LONG).show();
+                        for (int i = 0; i < 5; i++) {
+                            if (classesCheckedItems[i]) {
+                                chosenClasses.add(classes[i]);
+                            }
+                        }
+
                     }
                 });
                 builder.setNegativeButton("Cancel", null);
@@ -115,16 +137,22 @@ public class ChildChoice extends Fragment {
 
             }
         });
+        ChildData childData;
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            childData = (ChildData) bundle.getSerializable("childData");
+            Button btSignUpChildFragNext = (Button) v.findViewById(R.id.btSignUpChildFragNext);
+            btSignUpChildFragNext.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-        Button btSignUpChildFragNext = (Button) v.findViewById(R.id.btSignUpChildFragNext);
-        btSignUpChildFragNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), actvLevel.getText().toString(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(getActivity(), actvPlan.getText().toString(), Toast.LENGTH_SHORT).show();
-
-            }
-        });
+                    childData.setSchoolLevel(actvLevel.getText().toString());
+                    childData.setPremiumPlan(actvPlan.getText().toString().equals("Premium Plan"));
+                    childData.setClasses(chosenClasses);
+                    database.childDao().insert(childData);
+                }
+            });
+        }
 
         return v;
     }
