@@ -138,11 +138,13 @@ public class LoginActivity extends AppCompatActivity {
 //                loadingProgressBar.setVisibility(View.VISIBLE);
 //                loginViewModel.login(usernameEditText.getText().toString(),
 //                        passwordEditText.getText().toString());
-                if (!database.childDao().findUserWithEmail(usernameEditText.getText().toString()).isEmpty()) {
+                if (!database.childDao().findUserWithEmailAndPassword(usernameEditText.getText().toString(), passwordEditText.getText().toString()).isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_LONG).show();
                     // Lance l'activité post-login
                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                     startActivity(intent);
+                } else {
+                    Toast.makeText(getApplicationContext(), "The email address or password is incorrect. Please retry...", Toast.LENGTH_SHORT).show();
                 }
             }
         });
