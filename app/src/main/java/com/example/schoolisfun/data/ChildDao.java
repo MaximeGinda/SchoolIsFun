@@ -36,6 +36,10 @@ public interface ChildDao {
     @Query("SELECT * FROM Child WHERE email LIKE :search")
     public List<ChildData> findUserWithEmail(String search);
 
+    //Find all with same email and same password
+//    @Query("SELECT * FROM Child WHERE email LIKE :searchEmail AND password LIKE :searchPassword")
+//    public List<ChildData> findUserWithEmailAndPassword(String searchEmail, String searchPassword);
+
     //Get all data query
     @Query("SELECT * FROM Child")
     List<ChildData> getAll();

@@ -69,7 +69,7 @@
         android:layout_marginTop="600dp"
         android:backgroundTint="@color/main"
         android:fontFamily="@font/roboto"
-        android:text="@string/next"
+        android:text="@string/finish"
         android:textColor="@color/white"
         android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"

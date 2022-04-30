@@ -27,12 +27,21 @@ import android.widget.Toast;
 import com.example.schoolisfun.R;
 import com.example.schoolisfun.HomeActivity;
 import com.example.schoolisfun.SignUpActivity;
+import com.example.schoolisfun.data.ChildData;
+import com.example.schoolisfun.data.RoomDB;
 import com.example.schoolisfun.databinding.ActivityLoginBinding;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
+
+    RoomDB database;
+    List<ChildData> childDataList = new ArrayList<>();
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,6 +58,12 @@ public class LoginActivity extends AppCompatActivity {
         final Button loginButton = binding.login;
         final ProgressBar loadingProgressBar = binding.loading;
         final TextView signUp = binding.signup;
+
+        //Initialize database
+        database = RoomDB.getInstance(this);
+        //Store database value in data list
+        childDataList = database.childDao().getAll();
+
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
@@ -120,13 +135,15 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadingProgressBar.setVisibility(View.VISIBLE);
-                loginViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
-
-                // Lance l'activité post-login
-                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                startActivity(intent);
+//                loadingProgressBar.setVisibility(View.VISIBLE);
+//                loginViewModel.login(usernameEditText.getText().toString(),
+//                        passwordEditText.getText().toString());
+                if (!database.childDao().findUserWithEmail(usernameEditText.getText().toString()).isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_LONG).show();
+                    // Lance l'activité post-login
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
