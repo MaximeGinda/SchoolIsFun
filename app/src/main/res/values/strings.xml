@@ -31,6 +31,8 @@
     <string name="schoolLevel">School Level :</string>
     <string name="choicePlans">Choice of plans</string>
     <string name="finish">Finish</string>
+    <string name="classes">Classes</string>
+    <string name="chat">Chat</string>
 
     <string-array name="plan">
         <item>Progression Plan</item>
