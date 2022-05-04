@@ -2,6 +2,7 @@ package com.example.schoolisfun;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.schoolisfun.data.ChildData;
 import com.example.schoolisfun.data.RoomDB;
+import com.example.schoolisfun.ui.login.LoginActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -150,6 +152,9 @@ public class ChildChoice extends Fragment {
                     childData.setPremiumPlan(actvPlan.getText().toString().equals("Premium Plan"));
                     childData.setClasses(chosenClasses);
                     database.childDao().insert(childData);
+
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(intent);
                 }
             });
         }
