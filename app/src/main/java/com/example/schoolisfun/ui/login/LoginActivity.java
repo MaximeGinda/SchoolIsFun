@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         final EditText usernameEditText = binding.username;
         final EditText passwordEditText = binding.password;
         final Button loginButton = binding.login;
-        final ProgressBar loadingProgressBar = binding.loading;
+        //final ProgressBar loadingProgressBar = binding.loading;
         final TextView signUp = binding.signup;
 
         //Initialize database
@@ -87,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (loginResult == null) {
                     return;
                 }
-                loadingProgressBar.setVisibility(View.GONE);
+                //loadingProgressBar.setVisibility(View.GONE);
                 if (loginResult.getError() != null) {
                     showLoginFailed(loginResult.getError());
                 }
