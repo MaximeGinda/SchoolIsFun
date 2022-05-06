@@ -1,4 +1,4 @@
-package com.example.schoolisfun.data.model;
+package com.example.schoolisfun.ui.login;
 
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository

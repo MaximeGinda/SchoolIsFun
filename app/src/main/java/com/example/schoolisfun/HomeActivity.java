@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.Toast;
@@ -32,6 +33,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     LinearLayout layoutChatPremium;
     LinearLayout layoutChatNotPremium;
 
+
     // données de l'utilisateur
     int UserId;
     ArrayList<String> listClasses;
@@ -51,16 +53,16 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         Converters conv = new Converters();
 
         // Requete BDD
-        UserId = (int) getIntent().getIntExtra("id",0);
+        UserId = (int) getIntent().getIntExtra("id", 0);
 
         listClasses = (ArrayList<String>) database.childDao().findClassesWithID(UserId);
         listClasses = conv.fromString(listClasses.get(0));
 
-        premium = (boolean)database.childDao().findPremiumWithId(UserId);
+        premium = (boolean) database.childDao().findPremiumWithId(UserId);
 
         // On récupère les layouts
         layoutClasses = (LinearLayout) findViewById(R.id.classes);
-        layoutChatPremium = (LinearLayout) findViewById(R.id.chatP) ;
+        layoutChatPremium = (LinearLayout) findViewById(R.id.chatP);
         layoutChatNotPremium = (LinearLayout) findViewById(R.id.chat);
 
         LinearLayout one = findViewById(R.id.id1);
@@ -85,10 +87,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     // Si sélectionné
                     layoutClasses.setVisibility(View.VISIBLE);
 
-                    if(premium){
+                    if (premium) {
                         layoutChatPremium.setVisibility(View.INVISIBLE);
-                    }
-                    else{
+                    } else {
                         layoutChatNotPremium.setVisibility(View.INVISIBLE);
                     }
                     classes = true;
@@ -97,10 +98,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.rbChat:
                 if (isSelected) {
                     // Si sélectionné
-                    if(premium){
+                    if (premium) {
                         layoutChatPremium.setVisibility(View.VISIBLE);
-                    }
-                    else{
+                    } else {
                         layoutChatNotPremium.setVisibility(View.VISIBLE);
                     }
                     layoutClasses.setVisibility(View.INVISIBLE);
@@ -116,90 +116,85 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.id1:
                 find = false;
-                for(int i = 0; i < listClasses.size(); i++){
-                    if(listClasses.get(i).contains("Physics")){
+                for (int i = 0; i < listClasses.size(); i++) {
+                    if (listClasses.get(i).contains("Physics")) {
                         find = true;
                         break;
                     }
                 }
-                if(find){
+                if (find) {
                     Toast.makeText(HomeActivity.this, "Seul le cours Mathematics est fonctionnelle", Toast.LENGTH_LONG).show();
                     //Intent int1 = new Intent(HomeActivity.this, LoginActivity.class);
                     //int1.putExtra("id", UserId);
                     //startActivity(int1);
-                }
-                else {
+                } else {
                     Toast.makeText(HomeActivity.this, "Vous n'avez pas accès à ce cours", Toast.LENGTH_LONG).show();
                 }
                 break;
             case R.id.id2:
                 find = false;
-                for(int i = 0; i < listClasses.size(); i++){
-                    if(listClasses.get(i).contains("Mathematics")){
+                for (int i = 0; i < listClasses.size(); i++) {
+                    if (listClasses.get(i).contains("Mathematics")) {
                         find = true;
                         break;
                     }
                 }
-                if(find){
+                if (find) {
                     Intent int2 = new Intent(HomeActivity.this, MathActivity.class);
                     int2.putExtra("id", UserId);
                     startActivity(int2);
-                }
-                else {
+                } else {
                     Toast.makeText(HomeActivity.this, "Vous n'avez pas accès à ce cours", Toast.LENGTH_LONG).show();
                 }
                 break;
             case R.id.id3:
                 find = false;
-                for(int i = 0; i < listClasses.size(); i++){
-                    if(listClasses.get(i).contains("Computer Science")){
+                for (int i = 0; i < listClasses.size(); i++) {
+                    if (listClasses.get(i).contains("Computer Science")) {
                         find = true;
                         break;
                     }
                 }
-                if(find){
+                if (find) {
                     Toast.makeText(HomeActivity.this, "Seul le cours Mathematics est fonctionnelle", Toast.LENGTH_LONG).show();
                     //Intent int3 = new Intent(HomeActivity.this, LoginActivity.class);
                     //int3.putExtra("id", UserId);
                     //startActivity(int3);
-                }
-                else {
+                } else {
                     Toast.makeText(HomeActivity.this, "Vous n'avez pas accès à ce cours", Toast.LENGTH_LONG).show();
                 }
                 break;
             case R.id.id4:
                 find = false;
-                for(int i = 0; i < listClasses.size(); i++){
-                    if(listClasses.get(i).contains("English")){
+                for (int i = 0; i < listClasses.size(); i++) {
+                    if (listClasses.get(i).contains("English")) {
                         find = true;
                         break;
                     }
                 }
-                if(find){
+                if (find) {
                     Toast.makeText(HomeActivity.this, "Seul le cours Mathematics est fonctionnelle", Toast.LENGTH_LONG).show();
                     //Intent int4 = new Intent(HomeActivity.this, LoginActivity.class);
                     //int4.putExtra("id", UserId);
                     //startActivity(int4);
-                }
-                else {
+                } else {
                     Toast.makeText(HomeActivity.this, "Vous n'avez pas accès à ce cours", Toast.LENGTH_LONG).show();
                 }
                 break;
             case R.id.id5:
                 find = false;
-                for(int i = 0; i < listClasses.size(); i++){
-                    if(listClasses.get(i).contains("French")){
+                for (int i = 0; i < listClasses.size(); i++) {
+                    if (listClasses.get(i).contains("French")) {
                         find = true;
                         break;
                     }
                 }
-                if(find){
+                if (find) {
                     Toast.makeText(HomeActivity.this, "Seul le cours Mathematics est fonctionnelle", Toast.LENGTH_LONG).show();
-                   // Intent int5 = new Intent(HomeActivity.this, LoginActivity.class);
-                   // int5.putExtra("id", UserId);
-                   // startActivity(int5);
-                }
-                else {
+                    // Intent int5 = new Intent(HomeActivity.this, LoginActivity.class);
+                    // int5.putExtra("id", UserId);
+                    // startActivity(int5);
+                } else {
                     Toast.makeText(HomeActivity.this, "Vous n'avez pas accès à ce cours", Toast.LENGTH_LONG).show();
                 }
                 break;

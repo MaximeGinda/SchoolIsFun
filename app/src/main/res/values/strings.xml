@@ -34,8 +34,8 @@
     <string name="classes">Classes</string>
     <string name="chat">Chat</string>
     <string name="math">Mathematics</string>
-    <string name="ex">Exercices</string>
-    <string name="quizz">Quizz</string>
+    <string name="ex">Exercises</string>
+    <string name="quizz">Quiz</string>
     <string name="video">Video</string>
     <string name="course">Course Summary</string>
 
@@ -55,5 +55,8 @@
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="restart_quiz">Restart Quiz</string>
+    <string name="return_to_course_page">Return to Course Page</string>
+    <string name="your_score_is">Your Score is</string>
 
 </resources>
