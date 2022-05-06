@@ -1,13 +1,11 @@
-package com.example.schoolisfun;
+package com.example.schoolisfun.signup;
 
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.schoolisfun.R;
 import com.example.schoolisfun.data.ChildData;
-import com.example.schoolisfun.data.RoomDB;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -84,28 +79,16 @@ public class ChildInformation extends Fragment {
         etUserName.addTextChangedListener(textWatcher);
         etLastName.addTextChangedListener(textWatcher);
         etFirstName.addTextChangedListener(textWatcher);
-//        etPhoneNumber.addTextChangedListener(textWatcher);
-
 
         ChildData childData;
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             childData = (ChildData) bundle.getSerializable("childData");
 
-
             checkFieldsForEmptyValues();
             btSignUpChildFragNext.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                /*Bundle bundle = new Bundle();
-
-                bundle.putString("Name",String.valueOf(etName.getText()));
-
-                bundle.putString("FirstName", String.valueOf(etFirstName.getText()));
-
-                bundle.putString("UserName", String.valueOf(etUserName.getText()));
-
-                bundle.putString("PhoneNumber", String.valueOf(etPhoneNumber.getText()));*/
 
                     if (activated) {
                         childData.setUserName(sUserName);
@@ -116,8 +99,6 @@ public class ChildInformation extends Fragment {
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("childData", childData);
 
-//                        ChildInformationActivity childInformationActivity = (ChildInformationActivity) getActivity();
-//                        childInformationActivity.fragment1to2();
                         ChildChoice childChoice = new ChildChoice();
                         childChoice.setArguments(bundle);
                         requireActivity().getSupportFragmentManager()
@@ -128,6 +109,17 @@ public class ChildInformation extends Fragment {
                                 .commit();
                     } else {
                         Toast.makeText(getActivity(), "You have to complete form", Toast.LENGTH_SHORT).show();
+                        if(sUserName.length() < 2){
+                            Toast.makeText(getActivity(), "UserName -> at least 3 characters", Toast.LENGTH_SHORT).show();
+                        }
+
+                        if(sLastName.length() < 1){
+                            Toast.makeText(getActivity(), "LastName -> at least 1 character", Toast.LENGTH_SHORT).show();
+                        }
+
+                        if(sFirstName.length() < 1) {
+                            Toast.makeText(getActivity(), "FirstName -> at least 1 character", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             });
@@ -169,12 +161,10 @@ public class ChildInformation extends Fragment {
         sPhoneNumber = etPhoneNumber.getText().toString();
 
 
-        if (sUserName.length() > 0 && sLastName.length() > 0 && sFirstName.length() > 0) {
+        if (sUserName.length() > 2 && sLastName.length() > 0 && sFirstName.length() > 0) {
             activated = true;
-            //btSignUpChildFragNext.setEnabled(true);
         } else {
             activated = false;
-            //btSignUpChildFragNext.setEnabled(false);
         }
     }
 }

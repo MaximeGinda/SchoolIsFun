@@ -14,19 +14,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.schoolisfun.R;
 import com.example.schoolisfun.HomeActivity;
-import com.example.schoolisfun.SignUpActivity;
+import com.example.schoolisfun.signup.SignUpActivity;
 import com.example.schoolisfun.data.ChildData;
 import com.example.schoolisfun.data.RoomDB;
 import com.example.schoolisfun.databinding.ActivityLoginBinding;
@@ -38,6 +37,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
+
+    public int userId;
 
     RoomDB database;
     List<ChildData> childDataList = new ArrayList<>();
@@ -132,15 +133,25 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                loadingProgressBar.setVisibility(View.VISIBLE);
-//                loginViewModel.login(usernameEditText.getText().toString(),
-//                        passwordEditText.getText().toString());
+
                 if (!database.childDao().findUserWithEmailAndPassword(usernameEditText.getText().toString(), passwordEditText.getText().toString()).isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_LONG).show();
+                    userId = database.childDao().findIdWithEmail(usernameEditText.getText().toString());
                     // Lance l'activité post-login
+
                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    intent.putExtra("id", userId);
                     startActivity(intent);
-                } else {
+                }else if(!database.childDao().findUserWithUserNameAndPassword(usernameEditText.getText().toString(), passwordEditText.getText().toString()).isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_LONG).show();
+                    userId = database.childDao().findIdWithUserName(usernameEditText.getText().toString());
+                    // Lance l'activité post-login
+
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    intent.putExtra("id", userId);
+                    startActivity(intent);
+                }
+                else{
                     Toast.makeText(getApplicationContext(), "The email address or password is incorrect. Please retry...", Toast.LENGTH_SHORT).show();
                 }
             }

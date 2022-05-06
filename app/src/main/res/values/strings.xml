@@ -33,6 +33,11 @@
     <string name="finish">Finish</string>
     <string name="classes">Classes</string>
     <string name="chat">Chat</string>
+    <string name="math">Mathematics</string>
+    <string name="ex">Exercices</string>
+    <string name="quizz">Quizz</string>
+    <string name="video">Video</string>
+    <string name="course">Course Summary</string>
 
     <string-array name="plan">
         <item>Progression Plan</item>

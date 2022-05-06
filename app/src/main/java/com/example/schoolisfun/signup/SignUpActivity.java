@@ -1,9 +1,7 @@
-package com.example.schoolisfun;
+package com.example.schoolisfun.signup;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatRadioButton;
-import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,10 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.schoolisfun.R;
 import com.example.schoolisfun.data.ChildData;
 import com.example.schoolisfun.data.RoomDB;
 import com.example.schoolisfun.ui.login.LoginActivity;
@@ -58,7 +56,6 @@ public class SignUpActivity extends AppCompatActivity {
                 nbClickRB++;
                 if (nbClickRB % 2 == 0) {
                     radioButton.setChecked(false);
-                    ;
                 }
             }
         });
@@ -85,16 +82,11 @@ public class SignUpActivity extends AppCompatActivity {
                     String passwordText = etPassword.getText().toString().trim();
                     //Check condition
                     if (database.childDao().findUserWithEmail(emailText).isEmpty()) {
-                        if (!emailText.equals("") && !passwordText.equals("")) {
+                        if (!emailText.equals("") && emailText.contains("@") && passwordText.length() > 5) {
                             //When email and password are not empty and that email is not in database, Initialize main data
                             ChildData childData = new ChildData();
                             childData.setEmail(emailText);
                             childData.setPassword(passwordText);
-
-                            //Insert text in database
-
-                            //database.childDao().insert(childData);
-
 
                             //Clear edit text of password
                             etPassword.setText("");
@@ -104,7 +96,7 @@ public class SignUpActivity extends AppCompatActivity {
                             intent.putExtra("child_data", childData);
                             startActivity(intent);
                         } else {
-                            Toast.makeText(SignUpActivity.this, "Please fill in all the required fields.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUpActivity.this, "Email must have an \"@\" \nPWD -> at least 6 characters", Toast.LENGTH_SHORT).show();
                         }
                     } else {
                         Toast.makeText(SignUpActivity.this, "Email already in database", Toast.LENGTH_SHORT).show();

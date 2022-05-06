@@ -14,4 +14,5 @@
     <color name="textColor">#696969</color>
     <color name="transparent">#00ffffff</color>
     <color name="inactive">#C9C9C9</color>
+    <color name="math">#F94A4A</color>
 </resources>

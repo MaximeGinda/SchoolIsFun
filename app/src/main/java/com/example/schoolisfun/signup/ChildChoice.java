@@ -1,4 +1,4 @@
-package com.example.schoolisfun;
+package com.example.schoolisfun.signup;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -15,12 +15,12 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.schoolisfun.R;
 import com.example.schoolisfun.data.ChildData;
 import com.example.schoolisfun.data.RoomDB;
 import com.example.schoolisfun.ui.login.LoginActivity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -147,7 +147,6 @@ public class ChildChoice extends Fragment {
             btSignUpChildFragNext.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     childData.setSchoolLevel(actvLevel.getText().toString());
                     childData.setPremiumPlan(actvPlan.getText().toString().equals("Premium Plan"));
                     childData.setClasses(chosenClasses);
