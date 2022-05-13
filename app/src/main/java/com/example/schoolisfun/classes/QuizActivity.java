@@ -16,7 +16,6 @@ import com.example.schoolisfun.data.RoomDB;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class QuizActivity extends AppCompatActivity {
     private TextView questionTV, questionNumberTV;
@@ -121,6 +120,7 @@ public class QuizActivity extends AppCompatActivity {
         Button returnToCourseBtn = bottomSheetView.findViewById(R.id.btReturnToCourse);
         if (currentScore >= scoreThreshold) {
             scoreTV.setText("Your score is \n" + currentScore + "/" + nbQuestion + "\nCongratulations! You passed the Quiz!");
+            database.courseContentDao().updateBoolQuiz(true,getIntent().getIntExtra("id", 0), getIntent().getStringExtra("courseName"));
         } else {
             scoreTV.setText("Your score is \n" + currentScore + "/" + nbQuestion + "\nYou Failed! Please rety later! ");
         }
@@ -139,8 +139,11 @@ public class QuizActivity extends AppCompatActivity {
         returnToCourseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentReturnQuiz = new Intent(QuizActivity.this, MathActivity.class);
+                Intent intentReturnQuiz = new Intent(QuizActivity.this, CourseActivity.class);
+                intentReturnQuiz.putExtra("id", getIntent().getIntExtra("id", 0));
+                intentReturnQuiz.putExtra("classe",getIntent().getIntExtra("classe", 0));
                 startActivity(intentReturnQuiz);
+                finish();
             }
         });
 

@@ -2,28 +2,25 @@ package com.example.schoolisfun;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatRadioButton;
-import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.MutableLiveData;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.schoolisfun.classes.MathActivity;
-import com.example.schoolisfun.data.ChildData;
+import com.example.schoolisfun.classes.CourseActivity;
 import com.example.schoolisfun.data.Converters;
 import com.example.schoolisfun.data.RoomDB;
 import com.example.schoolisfun.ui.login.LoginActivity;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
 
@@ -39,6 +36,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private int UserId;
     private ArrayList<String> listClasses;
     private boolean premium;
+    private int percentageMath;
 
     // BDD
     private RoomDB database;
@@ -46,40 +44,55 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        if(isConnected){
+        if(isConnected) {
+            super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_home);
+
+
+            //Initialize database
+            database = RoomDB.getInstance(this);
+
+            Converters conv = new Converters();
+
+            // Requete BDD
+            UserId = (int) getIntent().getIntExtra("id", 0);
+
+            listClasses = (ArrayList<String>) database.childDao().findClassesWithID(UserId);
+            listClasses = conv.fromString(listClasses.get(0));
+
+            premium = (boolean) database.childDao().findPremiumWithId(UserId);
+
+            // On récupère les layouts
+            layoutClasses = (LinearLayout) findViewById(R.id.classes);
+            layoutChatPremium = (LinearLayout) findViewById(R.id.chatP);
+            layoutChatNotPremium = (LinearLayout) findViewById(R.id.chat);
+
+            LinearLayout one = findViewById(R.id.id1);
+            one.setOnClickListener(this); // calling onClick() method
+            LinearLayout two = findViewById(R.id.id2);
+            two.setOnClickListener(this);
+            LinearLayout three = findViewById(R.id.id3);
+            three.setOnClickListener(this);
+            LinearLayout Four = findViewById(R.id.id4);
+            Four.setOnClickListener(this);
+            LinearLayout Five = findViewById(R.id.id5);
+            Five.setOnClickListener(this);
+
+            calculPourcentage();
+            ProgressBar pbMath = (ProgressBar) findViewById(R.id.progressBarMath);
+            pbMath.setProgress(percentageMath);
+
+            if(percentageMath > 50){
+                pbMath.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
+            }
+            else if(percentageMath > 25){
+                pbMath.setProgressTintList(ColorStateList.valueOf(Color.YELLOW));
+            }
+            else{
+                pbMath.setProgressTintList(ColorStateList.valueOf(Color.RED));
+            }
+
         }
-
-        //Initialize database
-        database = RoomDB.getInstance(this);
-
-        Converters conv = new Converters();
-
-        // Requete BDD
-        UserId = (int) getIntent().getIntExtra("id", 0);
-
-        listClasses = (ArrayList<String>) database.childDao().findClassesWithID(UserId);
-        listClasses = conv.fromString(listClasses.get(0));
-
-        premium = (boolean) database.childDao().findPremiumWithId(UserId);
-
-        // On récupère les layouts
-        layoutClasses = (LinearLayout) findViewById(R.id.classes);
-        layoutChatPremium = (LinearLayout) findViewById(R.id.chatP);
-        layoutChatNotPremium = (LinearLayout) findViewById(R.id.chat);
-
-        LinearLayout one = findViewById(R.id.id1);
-        one.setOnClickListener(this); // calling onClick() method
-        LinearLayout two = findViewById(R.id.id2);
-        two.setOnClickListener(this);
-        LinearLayout three = findViewById(R.id.id3);
-        three.setOnClickListener(this);
-        LinearLayout Four = findViewById(R.id.id4);
-        Four.setOnClickListener(this);
-        LinearLayout Five = findViewById(R.id.id5);
-        Five.setOnClickListener(this);
 
     }
 
@@ -128,10 +141,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 }
                 if (find) {
-                    Toast.makeText(HomeActivity.this, "Seul le cours Mathematics est fonctionnelle", Toast.LENGTH_LONG).show();
-                    //Intent int1 = new Intent(HomeActivity.this, LoginActivity.class);
-                    //int1.putExtra("id", UserId);
-                    //startActivity(int1);
+                    Intent int1 = new Intent(HomeActivity.this, CourseActivity.class);
+                    int1.putExtra("id", UserId);
+                    int1.putExtra("classe", 1);
+                    startActivity(int1);
                 } else {
                     Toast.makeText(HomeActivity.this, "Vous n'avez pas accès à ce cours", Toast.LENGTH_LONG).show();
                 }
@@ -145,8 +158,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 }
                 if (find) {
-                    Intent int2 = new Intent(HomeActivity.this, MathActivity.class);
+                    Intent int2 = new Intent(HomeActivity.this, CourseActivity.class);
                     int2.putExtra("id", UserId);
+                    int2.putExtra("classe", 2);
                     startActivity(int2);
                 } else {
                     Toast.makeText(HomeActivity.this, "Vous n'avez pas accès à ce cours", Toast.LENGTH_LONG).show();
@@ -161,10 +175,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 }
                 if (find) {
-                    Toast.makeText(HomeActivity.this, "Seul le cours Mathematics est fonctionnelle", Toast.LENGTH_LONG).show();
-                    //Intent int3 = new Intent(HomeActivity.this, LoginActivity.class);
-                    //int3.putExtra("id", UserId);
-                    //startActivity(int3);
+                    Intent int3 = new Intent(HomeActivity.this, CourseActivity.class);
+                    int3.putExtra("id", UserId);
+                    int3.putExtra("classe", 3);
+                    startActivity(int3);
                 } else {
                     Toast.makeText(HomeActivity.this, "Vous n'avez pas accès à ce cours", Toast.LENGTH_LONG).show();
                 }
@@ -178,10 +192,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 }
                 if (find) {
-                    Toast.makeText(HomeActivity.this, "Seul le cours Mathematics est fonctionnelle", Toast.LENGTH_LONG).show();
-                    //Intent int4 = new Intent(HomeActivity.this, LoginActivity.class);
-                    //int4.putExtra("id", UserId);
-                    //startActivity(int4);
+                    Intent int4 = new Intent(HomeActivity.this, CourseActivity.class);
+                    int4.putExtra("id", UserId);
+                    int4.putExtra("classe", 4);
+                    startActivity(int4);
                 } else {
                     Toast.makeText(HomeActivity.this, "Vous n'avez pas accès à ce cours", Toast.LENGTH_LONG).show();
                 }
@@ -195,10 +209,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 }
                 if (find) {
-                    Toast.makeText(HomeActivity.this, "Seul le cours Mathematics est fonctionnelle", Toast.LENGTH_LONG).show();
-                    // Intent int5 = new Intent(HomeActivity.this, LoginActivity.class);
-                    // int5.putExtra("id", UserId);
-                    // startActivity(int5);
+                    Intent int5 = new Intent(HomeActivity.this, CourseActivity.class);
+                    int5.putExtra("id", UserId);
+                    int5.putExtra("classe", 5);
+                    startActivity(int5);
                 } else {
                     Toast.makeText(HomeActivity.this, "Vous n'avez pas accès à ce cours", Toast.LENGTH_LONG).show();
                 }
@@ -222,12 +236,16 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         switch (item.getItemId()) {
             case R.id.home:
                 Intent home = new Intent(HomeActivity.this, HomeActivity.class);
+                home.putExtra("id", getIntent().getIntExtra("id", 0));
+
                 startActivity(home);
+                finish();
                 return true;
             case R.id.disconnect:
                 isConnected = false;
                 Intent login = new Intent(HomeActivity.this, LoginActivity.class);
                 startActivity(login);
+                finish();
                 return true;
             default:
                 return false;
@@ -237,5 +255,25 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
         super.onPointerCaptureChanged(hasCapture);
+    }
+
+    private void calculPourcentage(){
+        percentageMath = 0;
+
+        if(database.courseContentDao().findboolExerciseWithID(getIntent().getIntExtra("id", 0),"Mathematics")){
+            percentageMath += 25;
+        }
+
+        if(database.courseContentDao().findboolVideoWithID(getIntent().getIntExtra("id", 0),"Mathematics")){
+            percentageMath += 25;
+        }
+
+        if(database.courseContentDao().findboolSummaryWithID(getIntent().getIntExtra("id", 0),"Mathematics")){
+            percentageMath += 25;
+        }
+
+        if(database.courseContentDao().findboolQuizWithID(getIntent().getIntExtra("id", 0),"Mathematics")){
+            percentageMath += 25;
+        }
     }
 }

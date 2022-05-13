@@ -112,6 +112,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //Delete all data from database
                 database.childDao().reset(childDataList);
+                database.courseContentDao().reset(database.courseContentDao().getAll());
                 childDataList.clear();
                 childDataList.addAll(database.childDao().getAll());
             }

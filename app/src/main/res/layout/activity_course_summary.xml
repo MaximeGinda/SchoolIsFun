@@ -4,19 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CourseSummaryActivity">
+    tools:context=".classes.CourseSummaryActivity">
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#BAB3B3"
+        app:layout_constraintBottom_toTopOf="@+id/scroll_view"
+        app:layout_constraintTop_toBottomOf="@+id/Title"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="24dp" />
 
     <TextView
         android:id="@+id/Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto"
+        android:fontFamily="@font/roboto_bold"
         android:text="@string/course"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textAllCaps="true"
+        android:textColor="#000000"
+        android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/scroll_view"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,5 +51,22 @@
             tools:text="" />
 
     </ScrollView>
+
+    <ImageButton
+        android:id="@+id/quit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="false"
+        android:background="@drawable/exitbackground"
+        android:backgroundTint="@color/black"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/scroll_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.7"
+        app:layout_constraintStart_toEndOf="@+id/Title"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_close_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -146,7 +146,6 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_LONG).show();
                     userId = database.childDao().findIdWithUserName(usernameEditText.getText().toString());
                     // Lance l'activité post-login
-
                     HomeActivity.isConnected = true;
                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                     intent.putExtra("id", userId);
@@ -164,6 +163,7 @@ public class LoginActivity extends AppCompatActivity {
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
                 startActivity(intent);
+                finish();
                 return true;
             }
         });
@@ -171,5 +171,10 @@ public class LoginActivity extends AppCompatActivity {
 
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        return;
     }
 }

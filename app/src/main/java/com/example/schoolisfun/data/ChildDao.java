@@ -34,6 +34,10 @@ public interface ChildDao {
     @Query("SELECT * FROM Child WHERE firstName LIKE :search OR lastName  LIKE :search")
     public List<ChildData> findUserWithName(String search);
 
+    //Find all with same name
+    @Query("SELECT * FROM Child WHERE childID LIKE :id")
+    public List<ChildData> findUserWithId(int id);
+
     //Find all with same email
     @Query("SELECT * FROM Child WHERE email LIKE :search")
     public List<ChildData> findUserWithEmail(String search);

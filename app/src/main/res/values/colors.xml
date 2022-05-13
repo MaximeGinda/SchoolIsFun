@@ -15,4 +15,8 @@
     <color name="transparent">#00ffffff</color>
     <color name="inactive">#C9C9C9</color>
     <color name="math">#F94A4A</color>
+    <color name="cs">#0045FF</color>
+    <color name="english">#9B00FC</color>
+    <color name="french">#18B112</color>
+    <color name="physics">#FCAE00</color>
 </resources>

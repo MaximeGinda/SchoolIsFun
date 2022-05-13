@@ -10,13 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
-            android:name=".CourseSummaryActivity"
+            android:name=".classes.CourseSummaryActivity"
             android:exported="false" />
         <activity
             android:name=".classes.QuizActivity"
             android:exported="false" />
         <activity
-            android:name=".classes.MathActivity"
+            android:name=".classes.CourseActivity"
             android:exported="false" />
         <activity
             android:name=".signup.ChildInformationActivity"

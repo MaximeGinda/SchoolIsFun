@@ -9,7 +9,7 @@ import androidx.room.TypeConverters;
 
 //Add database entities
 
-@Database(entities = {ChildData.class, ParentData.class, CourseContentData.class}, version = 2, exportSchema = false)
+@Database(entities = {ChildData.class, ParentData.class, CourseContentData.class}, version = 1, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract class RoomDB extends RoomDatabase {
     //Create database instance
@@ -33,8 +33,6 @@ public abstract class RoomDB extends RoomDatabase {
 
     //Create DAO
     public abstract ChildDao childDao();
-
+    public abstract CourseContentDao courseContentDao();
     //    public abstract ParentDao parentDao();
-
-//    public abstract CourseContentDao courseContentDao();
 }

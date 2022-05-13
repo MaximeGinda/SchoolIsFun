@@ -35,6 +35,17 @@ public class CourseContentData implements Serializable {
     @ColumnInfo(name = "boolQuiz")
     private boolean boolQuiz;
 
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    @ColumnInfo(name = "userID")
+    private int userID;
+
     public int getCourseContentID() {
         return courseContentID;
     }

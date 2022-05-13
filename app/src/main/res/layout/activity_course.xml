@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".classes.MathActivity">
+    tools:context=".classes.CourseActivity">
 
     <TextView
-        android:id="@+id/MathTV"
-        android:layout_width="414dp"
-        android:layout_height="87dp"
-        android:background="@drawable/math_background"
+        android:id="@+id/courseTv"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/main"
         android:gravity="center"
-        android:text="@string/math"
+        android:text="TEXTE"
+        android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -32,7 +33,7 @@
         android:clickable="true"
         android:focusable="true"
         android:onClick="showPopup"
-        app:layout_constraintBottom_toBottomOf="@+id/MathTV"
+        app:layout_constraintBottom_toBottomOf="@+id/courseTv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/menu"
@@ -59,7 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="90dp"
             android:layout_marginTop="30dp"
-            android:background="@drawable/buttonclasses"
+            android:background="@drawable/buttonmaths"
             android:clickable="true"
             android:focusable="true"
             android:orientation="horizontal">
@@ -98,7 +99,7 @@
             android:layout_width="match_parent"
             android:layout_height="90dp"
             android:layout_marginTop="30dp"
-            android:background="@drawable/buttonclasses"
+            android:background="@drawable/buttonmaths"
             android:clickable="true"
             android:focusable="true"
             android:orientation="horizontal">
@@ -137,7 +138,7 @@
             android:layout_width="match_parent"
             android:layout_height="90dp"
             android:layout_marginTop="30dp"
-            android:background="@drawable/buttonclasses"
+            android:background="@drawable/buttonmaths"
             android:clickable="true"
             android:focusable="true"
             android:orientation="horizontal"
@@ -178,7 +179,7 @@
             android:layout_width="match_parent"
             android:layout_height="90dp"
             android:layout_marginTop="30dp"
-            android:background="@drawable/buttonclasses"
+            android:background="@drawable/buttonmaths"
             android:clickable="true"
             android:focusable="true"
             android:orientation="horizontal">
