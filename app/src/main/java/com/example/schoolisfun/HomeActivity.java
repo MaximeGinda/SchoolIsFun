@@ -27,25 +27,30 @@ import java.util.List;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
 
+
     // Layouts / utilisée pour l'affichage
-    boolean classes = true;
-    LinearLayout layoutClasses;
-    LinearLayout layoutChatPremium;
-    LinearLayout layoutChatNotPremium;
+    private boolean classes = true;
+    private LinearLayout layoutClasses;
+    private LinearLayout layoutChatPremium;
+    private LinearLayout layoutChatNotPremium;
 
 
     // données de l'utilisateur
-    int UserId;
-    ArrayList<String> listClasses;
-    boolean premium;
+    private int UserId;
+    private ArrayList<String> listClasses;
+    private boolean premium;
 
     // BDD
-    RoomDB database;
+    private RoomDB database;
+    public static boolean isConnected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+
+        if(isConnected){
+            setContentView(R.layout.activity_home);
+        }
 
         //Initialize database
         database = RoomDB.getInstance(this);
@@ -220,6 +225,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(home);
                 return true;
             case R.id.disconnect:
+                isConnected = false;
                 Intent login = new Intent(HomeActivity.this, LoginActivity.class);
                 startActivity(login);
                 return true;

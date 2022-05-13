@@ -101,7 +101,7 @@
         <LinearLayout
             android:id="@+id/id1"
             android:layout_width="match_parent"
-            android:layout_height="90dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@drawable/buttonhome"
             android:backgroundTint="#1AFCAE00"
@@ -112,7 +112,8 @@
             <TextView
                 android:id="@+id/twClasses1"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
                 android:layout_marginStart="20dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/roboto_bold"
@@ -133,7 +134,7 @@
         <LinearLayout
             android:id="@+id/id2"
             android:layout_width="match_parent"
-            android:layout_height="90dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@drawable/buttonhome"
             android:backgroundTint="#1AFF0000"
@@ -144,7 +145,8 @@
             <TextView
                 android:id="@+id/twClasses2"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
                 android:layout_marginStart="20dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/roboto_bold"
@@ -165,7 +167,7 @@
         <LinearLayout
             android:id="@+id/id3"
             android:layout_width="match_parent"
-            android:layout_height="90dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@drawable/buttonhome"
             android:backgroundTint="#1A0045FF"
@@ -176,7 +178,8 @@
             <TextView
                 android:id="@+id/twClasses3"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/roboto_bold"
@@ -197,7 +200,7 @@
         <LinearLayout
             android:id="@+id/id4"
             android:layout_width="match_parent"
-            android:layout_height="90dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@drawable/buttonhome"
             android:backgroundTint="#1A9B00FC"
@@ -208,7 +211,8 @@
             <TextView
                 android:id="@+id/twClasses4"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/roboto_bold"
@@ -229,7 +233,7 @@
         <LinearLayout
             android:id="@+id/id5"
             android:layout_width="match_parent"
-            android:layout_height="90dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@drawable/buttonhome"
             android:backgroundTint="#1A18B112"
@@ -240,7 +244,8 @@
             <TextView
                 android:id="@+id/twClasses5"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/roboto_bold"

@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 
+import com.example.schoolisfun.CourseSummaryActivity;
 import com.example.schoolisfun.HomeActivity;
 import com.example.schoolisfun.R;
 import com.example.schoolisfun.data.ChildData;
@@ -69,6 +70,15 @@ public class MathActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         if (courseContentData.isBoolQuiz()) {
             checked4.setImageResource(R.drawable.checked);
         }
+
+        courseSummary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentSummary = new Intent(MathActivity.this, CourseSummaryActivity.class);
+                startActivity(intentSummary);
+            }
+        });
+
         quiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

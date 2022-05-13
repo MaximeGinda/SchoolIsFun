@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.schoolisfun.HomeActivity;
+import com.example.schoolisfun.data.CourseContentData;
 import com.example.schoolisfun.signup.SignUpActivity;
 import com.example.schoolisfun.data.ChildData;
 import com.example.schoolisfun.data.RoomDB;
@@ -42,7 +43,6 @@ public class LoginActivity extends AppCompatActivity {
 
     RoomDB database;
     List<ChildData> childDataList = new ArrayList<>();
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -147,6 +147,7 @@ public class LoginActivity extends AppCompatActivity {
                     userId = database.childDao().findIdWithUserName(usernameEditText.getText().toString());
                     // Lance l'activité post-login
 
+                    HomeActivity.isConnected = true;
                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                     intent.putExtra("id", userId);
                     startActivity(intent);
