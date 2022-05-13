@@ -24,7 +24,7 @@ public class CourseSummaryActivity extends AppCompatActivity {
 
         database = RoomDB.getInstance(this);
 
-        Markwon.setMarkdown((TextView) findViewById(R.id.text), database.courseContentDao().findSummaryWithID(getIntent().getIntExtra("id", 0),"Mathematics"));
+        Markwon.setMarkdown((TextView) findViewById(R.id.text), database.courseContentDao().findSummaryWithID(getIntent().getIntExtra("id", 0),getIntent().getStringExtra("courseName")));
 
         findViewById(R.id.quit).setOnClickListener(new View.OnClickListener() {
             @Override

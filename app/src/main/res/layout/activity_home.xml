@@ -122,7 +122,7 @@
                 android:textStyle="bold" />
 
             <ProgressBar
-                android:id="@+id/progressBarMath3"
+                android:id="@+id/progressBarPhy"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -206,7 +206,7 @@
                 android:textStyle="bold" />
 
             <ProgressBar
-                android:id="@+id/progressBarMath2"
+                android:id="@+id/progressBarCS"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -248,7 +248,7 @@
                 android:textStyle="bold" />
 
             <ProgressBar
-                android:id="@+id/progressBarMath5"
+                android:id="@+id/progressBarEng"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -290,7 +290,7 @@
                 android:textStyle="bold" />
 
             <ProgressBar
-                android:id="@+id/progressBarMath4"
+                android:id="@+id/progressBarFre"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

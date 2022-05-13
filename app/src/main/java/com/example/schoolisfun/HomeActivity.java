@@ -37,6 +37,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private ArrayList<String> listClasses;
     private boolean premium;
     private int percentageMath;
+    private int percentageEng;
+    private int percentageFre;
+    private int percentageCS;
+    private int percentagePhy;
+
 
     // BDD
     private RoomDB database;
@@ -82,6 +87,19 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             ProgressBar pbMath = (ProgressBar) findViewById(R.id.progressBarMath);
             pbMath.setProgress(percentageMath);
 
+            ProgressBar pbPhy = (ProgressBar) findViewById(R.id.progressBarPhy);
+            pbPhy.setProgress(percentagePhy);
+
+            ProgressBar pbCS = (ProgressBar) findViewById(R.id.progressBarCS);
+            pbCS.setProgress(percentageCS);
+
+            ProgressBar pbEng = (ProgressBar) findViewById(R.id.progressBarEng);
+            pbEng.setProgress(percentageEng);
+
+            ProgressBar pbFre = (ProgressBar) findViewById(R.id.progressBarFre);
+            pbFre.setProgress(percentageFre);
+
+            // ------ PROGRESS BARS ----- ///
             if(percentageMath > 50){
                 pbMath.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
             }
@@ -92,6 +110,45 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 pbMath.setProgressTintList(ColorStateList.valueOf(Color.RED));
             }
 
+            if(percentageCS > 50){
+                pbCS.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
+            }
+            else if(percentageCS > 25){
+                pbCS.setProgressTintList(ColorStateList.valueOf(Color.YELLOW));
+            }
+            else{
+                pbCS.setProgressTintList(ColorStateList.valueOf(Color.RED));
+            }
+
+            if(percentagePhy > 50){
+                pbPhy.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
+            }
+            else if(percentagePhy > 25){
+                pbPhy.setProgressTintList(ColorStateList.valueOf(Color.YELLOW));
+            }
+            else{
+                pbPhy.setProgressTintList(ColorStateList.valueOf(Color.RED));
+            }
+
+            if(percentageEng > 50){
+                pbEng.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
+            }
+            else if(percentageEng > 25){
+                pbEng.setProgressTintList(ColorStateList.valueOf(Color.YELLOW));
+            }
+            else{
+                pbEng.setProgressTintList(ColorStateList.valueOf(Color.RED));
+            }
+
+            if(percentageFre > 50){
+                pbFre.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
+            }
+            else if(percentageFre > 25){
+                pbFre.setProgressTintList(ColorStateList.valueOf(Color.YELLOW));
+            }
+            else{
+                pbFre.setProgressTintList(ColorStateList.valueOf(Color.RED));
+            }
         }
 
     }
@@ -257,23 +314,98 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         super.onPointerCaptureChanged(hasCapture);
     }
 
+    // Calcul le pourcentage pour les progress bar
     private void calculPourcentage(){
         percentageMath = 0;
+        percentagePhy = 0;
+        percentageEng = 0;
+        percentageFre = 0;
+        percentageCS = 0;
 
+        // ----- EXERCICES ----- //
         if(database.courseContentDao().findboolExerciseWithID(getIntent().getIntExtra("id", 0),"Mathematics")){
             percentageMath += 25;
         }
 
+        if(database.courseContentDao().findboolExerciseWithID(getIntent().getIntExtra("id", 0),"Physics")){
+            percentagePhy += 25;
+        }
+
+        if(database.courseContentDao().findboolExerciseWithID(getIntent().getIntExtra("id", 0),"English")){
+            percentageEng += 25;
+        }
+
+        if(database.courseContentDao().findboolExerciseWithID(getIntent().getIntExtra("id", 0),"French")){
+            percentageFre += 25;
+        }
+
+        if(database.courseContentDao().findboolExerciseWithID(getIntent().getIntExtra("id", 0),"Computer Science")){
+            percentageCS += 25;
+        }
+
+
+        // ----- VIDEOS ----- //
         if(database.courseContentDao().findboolVideoWithID(getIntent().getIntExtra("id", 0),"Mathematics")){
             percentageMath += 25;
         }
 
+        if(database.courseContentDao().findboolVideoWithID(getIntent().getIntExtra("id", 0),"Physics")){
+            percentagePhy += 25;
+        }
+
+        if(database.courseContentDao().findboolVideoWithID(getIntent().getIntExtra("id", 0),"English")){
+            percentageEng += 25;
+        }
+
+        if(database.courseContentDao().findboolVideoWithID(getIntent().getIntExtra("id", 0),"French")){
+            percentageFre += 25;
+        }
+
+        if(database.courseContentDao().findboolVideoWithID(getIntent().getIntExtra("id", 0),"Computer Science")){
+            percentageCS += 25;
+        }
+
+        // ----- SUMMARY ----- //
         if(database.courseContentDao().findboolSummaryWithID(getIntent().getIntExtra("id", 0),"Mathematics")){
             percentageMath += 25;
         }
 
+        if(database.courseContentDao().findboolSummaryWithID(getIntent().getIntExtra("id", 0),"Physics")){
+            percentagePhy += 25;
+        }
+
+        if(database.courseContentDao().findboolSummaryWithID(getIntent().getIntExtra("id", 0),"English")){
+            percentageEng += 25;
+        }
+
+        if(database.courseContentDao().findboolSummaryWithID(getIntent().getIntExtra("id", 0),"French")){
+            percentageFre += 25;
+        }
+
+        if(database.courseContentDao().findboolSummaryWithID(getIntent().getIntExtra("id", 0),"Computer Science")){
+            percentageCS += 25;
+        }
+
+        // ----- QUIZ ----- //
         if(database.courseContentDao().findboolQuizWithID(getIntent().getIntExtra("id", 0),"Mathematics")){
             percentageMath += 25;
         }
+
+        if(database.courseContentDao().findboolQuizWithID(getIntent().getIntExtra("id", 0),"Physics")){
+            percentagePhy += 25;
+        }
+
+        if(database.courseContentDao().findboolQuizWithID(getIntent().getIntExtra("id", 0),"English")){
+            percentageEng += 25;
+        }
+
+        if(database.courseContentDao().findboolQuizWithID(getIntent().getIntExtra("id", 0),"French")){
+            percentageFre += 25;
+        }
+
+        if(database.courseContentDao().findboolQuizWithID(getIntent().getIntExtra("id", 0),"Computer Science")){
+            percentageCS += 25;
+        }
+
     }
 }
