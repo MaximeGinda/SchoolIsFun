@@ -15,6 +15,7 @@
     <string name="hAccount">Already have an account ?</string>
     <string name="signUp">Sign Up</string>
     <string name="signUpChild">Sign Up As A Child</string>
+    <string name="signUpParent">Sign Up As A Parent</string>
     <string name="signIn">Sign In</string>
     <string name="or">Or</string>
     <string name="policy">I agree with Private Policy</string>
@@ -26,6 +27,8 @@
     <string name="Phonenumber">Phone Number (optionnal)</string>
     <string name="next">Next</string>
     <string name="childInfo">Child Informations</string>
+    <string name="parentInfo">Parent Informations</string>
+
     <string name="choiceClasses">Choice of classes</string>
     <string name="schoolYears">School Years :</string>
     <string name="schoolLevel">School Level :</string>

@@ -131,7 +131,6 @@
         android:id="@+id/btSignUpChildFragNext"
         android:layout_width="345dp"
         android:layout_height="80dp"
-        android:layout_marginTop="600dp"
         android:backgroundTint="@color/main"
         android:fontFamily="@font/roboto"
         android:text="@string/next"
@@ -141,7 +140,7 @@
         app:layout_constraintEnd_toEndOf="parent"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/etPhoneNumber" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

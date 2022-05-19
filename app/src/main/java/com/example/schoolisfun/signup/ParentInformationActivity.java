@@ -8,27 +8,31 @@ import android.os.Bundle;
 
 import com.example.schoolisfun.R;
 import com.example.schoolisfun.data.ChildData;
+import com.example.schoolisfun.data.ParentData;
 
-public class ChildInformationActivity extends AppCompatActivity {
+public class ParentInformationActivity extends AppCompatActivity {
 
     private FragmentManager fragMan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_child_information);
+        setContentView(R.layout.activity_parent_information);
 
         Intent intent = getIntent();
-        ChildData childData = (ChildData) getIntent().getSerializableExtra("child_data");
+        ParentData parentData = (ParentData) getIntent().getSerializableExtra("parent_data");
 
         Bundle bundle = new Bundle();
-        bundle.putSerializable("childData", childData);
-        ChildInformation childInformation = new ChildInformation();
-        childInformation.setArguments(bundle);
+        bundle.putSerializable("parentData", parentData);
+        ParentInformation pi = new ParentInformation();
+        pi.setArguments(bundle);
 
+        ChildsChoiceParent1 pi2 = new ChildsChoiceParent1();
+
+        // On lance le premier fragment
         fragMan = getSupportFragmentManager();
         fragMan.beginTransaction()
-                .replace(R.id.childFrameLayout, childInformation)
+                .replace(R.id.parentFrameLayout, pi2)
                 .setReorderingAllowed(true)
                 .addToBackStack(null)
                 .commit();
@@ -43,5 +47,4 @@ public class ChildInformationActivity extends AppCompatActivity {
                 .addToBackStack(null)
                 .commit();
     }
-
 }

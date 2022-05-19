@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.schoolisfun.R;
 import com.example.schoolisfun.data.ChildData;
+import com.example.schoolisfun.data.ParentData;
 import com.example.schoolisfun.data.RoomDB;
 import com.example.schoolisfun.ui.login.LoginActivity;
 
@@ -24,13 +25,13 @@ import java.util.List;
 
 public class SignUpActivity extends AppCompatActivity {
     AppCompatRadioButton rbParent, rbChild;
-    EditText etEmail, etPassword;
-    ImageButton ibGoogle;
+    private EditText etEmail, etPassword;
+    private ImageButton ibGoogle;
     int nbClickRB;
     boolean parent = true;
 
     RoomDB database;
-    List<ChildData> childDataList = new ArrayList<>();
+    private List<ChildData> childDataList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +77,10 @@ public class SignUpActivity extends AppCompatActivity {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                // Si on s'enregistre en tant que child
                 if (!parent) {
+
                     //Get string from edit text
                     String emailText = etEmail.getText().toString().trim();
                     String passwordText = etPassword.getText().toString().trim();
@@ -101,12 +105,31 @@ public class SignUpActivity extends AppCompatActivity {
                     } else {
                         Toast.makeText(SignUpActivity.this, "Email already in database", Toast.LENGTH_SHORT).show();
                     }
+                }
+                else{ // En tant que Parent
 
+                    //Get string from edit text
+                    String emailText = etEmail.getText().toString().trim();
+                    String passwordText = etPassword.getText().toString().trim();
+
+                    if (!emailText.equals("") && emailText.contains("@") && passwordText.length() > 5) {
+                        //When email and password are not empty and that email is not in database, Initialize main data
+                        ParentData parentData = new ParentData();
+                        parentData.setEmail(emailText);
+                        parentData.setPassword(passwordText);
+
+                        Intent intent = new Intent(SignUpActivity.this, ParentInformationActivity.class);
+                        intent.putExtra("parent_data", parentData);
+                        startActivity(intent);
+                    }
+                    else{
+                        Toast.makeText(SignUpActivity.this, "Email must have an \"@\" \nPWD -> at least 6 characters", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
 
-//        // Reset de la database si clic sur le bouton Google
+        // Reset de la database si clic sur le bouton Google
         ibGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
