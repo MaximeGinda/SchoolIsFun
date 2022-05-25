@@ -12,6 +12,7 @@ import java.util.List;
 
 @Dao
 public interface CourseContentDao {
+
     //Insert query
     @Insert(onConflict = REPLACE)
     void insert(CourseContentData... CourseContentData);
@@ -29,6 +30,9 @@ public interface CourseContentDao {
 
     @Query("SELECT boolQuiz FROM CourseContent Where userID LIKE :id AND courseName LIKE :classname")
     Boolean findboolQuizWithID(int id, String classname);
+
+    @Query("SELECT quiz FROM CourseContent Where courseName LIKE :classname")
+    List<String> findQuizWithClassname(String classname);
 
     @Query("SELECT boolExercise FROM CourseContent Where userID LIKE :id AND courseName LIKE :classname")
     Boolean findboolExerciseWithID(int id, String classname);

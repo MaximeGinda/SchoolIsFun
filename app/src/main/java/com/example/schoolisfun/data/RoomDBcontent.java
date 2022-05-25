@@ -9,20 +9,21 @@ import androidx.room.TypeConverters;
 
 //Add database entities
 
-@Database(entities = {ChildData.class, ParentData.class}, version = 1, exportSchema = false)
+@Database(entities = {CourseContentData.class}, version = 1, exportSchema = false)
 @TypeConverters({Converters.class})
-public abstract class RoomDB extends RoomDatabase {
+public abstract class RoomDBcontent extends RoomDatabase {
     //Create database instance
-    private static RoomDB database;
+    private static RoomDBcontent database;
 
     //Define database name
-    private static String DATABASE_NAME = "database";
+    private static String DATABASE_NAME = "databaseContent";
 
-    public synchronized static RoomDB getInstance(Context context) {
+    public synchronized static RoomDBcontent getInstance(Context context) {
         //Check condition
         if (database == null) {
             //When database is null, Initialize database
-            database = Room.databaseBuilder(context.getApplicationContext(), RoomDB.class, DATABASE_NAME)
+            database = Room.databaseBuilder(context.getApplicationContext(), RoomDBcontent.class, DATABASE_NAME)
+                    .createFromAsset("database/CourseContent.db")
                     .allowMainThreadQueries()
                     .fallbackToDestructiveMigration()
                     .build();
@@ -31,7 +32,5 @@ public abstract class RoomDB extends RoomDatabase {
         return database;
     }
 
-    //Create DAO
-    public abstract ChildDao childDao();
-    //    public abstract ParentDao parentDao();
+    public abstract CourseContentDao courseContentDao();
 }

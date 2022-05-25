@@ -18,6 +18,7 @@ import com.example.schoolisfun.R;
 import com.example.schoolisfun.data.ChildData;
 import com.example.schoolisfun.data.ParentData;
 import com.example.schoolisfun.data.RoomDB;
+import com.example.schoolisfun.data.RoomDBcontent;
 import com.example.schoolisfun.ui.login.LoginActivity;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class SignUpActivity extends AppCompatActivity {
     boolean parent = true;
 
     RoomDB database;
+    RoomDBcontent databaseContent;
     private List<ChildData> childDataList = new ArrayList<>();
 
     @Override
@@ -135,7 +137,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //Delete all data from database
                 database.childDao().reset(childDataList);
-                database.courseContentDao().reset(database.courseContentDao().getAll());
+                //databaseContent.courseContentDao().reset(databaseContent.courseContentDao().getAll());
                 childDataList.clear();
                 childDataList.addAll(database.childDao().getAll());
             }

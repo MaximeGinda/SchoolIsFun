@@ -27,22 +27,10 @@ public class ParentInformationActivity extends AppCompatActivity {
         ParentInformation pi = new ParentInformation();
         pi.setArguments(bundle);
 
-        ChildsChoiceParent1 pi2 = new ChildsChoiceParent1();
-
         // On lance le premier fragment
         fragMan = getSupportFragmentManager();
         fragMan.beginTransaction()
-                .replace(R.id.parentFrameLayout, pi2)
-                .setReorderingAllowed(true)
-                .addToBackStack(null)
-                .commit();
-    }
-
-    // Permet de passer du fragment 1 au 2 dans les informations de l'enfant
-    public void fragment1to2() {
-        fragMan = getSupportFragmentManager();
-        fragMan.beginTransaction()
-                .replace(R.id.childFrameLayout, ChildChoice.class, null, "tag")
+                .replace(R.id.parentFrameLayout, pi)
                 .setReorderingAllowed(true)
                 .addToBackStack(null)
                 .commit();

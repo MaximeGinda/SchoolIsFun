@@ -8,6 +8,21 @@
     tools:context=".signup.ChildsChoiceParent1">
 
 
+    <Button
+        android:id="@+id/btSignUpParentNextFrag2"
+        android:layout_width="345dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="20dp"
+
+        android:backgroundTint="@color/main"
+        android:fontFamily="@font/roboto"
+        android:text="@string/next"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
         android:id="@+id/tvSignup2"
         android:layout_width="200dp"
@@ -25,10 +40,10 @@
 
     <LinearLayout
         android:id="@+id/choice"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/buttonchoice"
         android:clickable="true"
@@ -48,20 +63,27 @@
             android:fontFamily="@font/roboto_bold"
             android:text="CHILD 1"
             android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/imageViewBT1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:src="@drawable/ic_baseline_arrow_drop_down_24" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/choice2"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="200dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/buttonchoice"
         android:clickable="true"
         android:focusable="true"
         android:orientation="horizontal"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/choice">
@@ -77,20 +99,29 @@
             android:text="CHILD 2"
             android:textSize="20sp" />
 
+        <ImageView
+            android:id="@+id/imageViewBT2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:src="@drawable/ic_baseline_arrow_right_24" />
+
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="300dp"
+        android:id="@+id/linearLayoutBT1"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/choice">
 
         <EditText
-            android:id="@+id/etLastName2"
+            android:id="@+id/etLastNameBT1"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
@@ -106,7 +137,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/etFirstName2"
+            android:id="@+id/etFirstNameBT1"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
@@ -128,23 +159,214 @@
             android:layout_height="60dp"
             android:gravity="center_horizontal"
             android:hint="Choose School Level"
+            app:boxStrokeColor="@color/bordercolor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:boxStrokeColor="@color/bordercolor"
             app:layout_constraintTop_toTopOf="parent">
 
             <AutoCompleteTextView
-                android:id="@+id/actvLevel"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/etbackground"
+                android:id="@+id/actvLevelBT1"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:layout_marginTop="10dp"
                 android:layout_weight="1"
+                android:background="@drawable/etbackground"
                 android:fontFamily="@font/roboto"
                 android:inputType="none"
                 android:textSize="8sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutBT2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/choice2">
+
+        <EditText
+            android:id="@+id/etLastNameBT2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/etbackground"
+            android:fontFamily="@font/roboto"
+            android:hint="@string/LastName"
+            android:inputType="text"
+            android:padding="20dp"
+            android:selectAllOnFocus="true"
+            android:textSize="8sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/etFirstNameBT2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/etbackground"
+            android:fontFamily="@font/roboto"
+            android:hint="@string/Firstname"
+            android:inputType="text"
+            android:padding="20dp"
+            android:selectAllOnFocus="true"
+            android:textSize="8sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center_horizontal"
+            android:hint="Choose School Level"
+            app:boxStrokeColor="@color/bordercolor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <AutoCompleteTextView
+                android:id="@+id/actvLevelBT2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/etbackground"
+                android:fontFamily="@font/roboto"
+                android:inputType="none"
+                android:textSize="8sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/choice3"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/buttonchoice"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="horizontal"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/choice2">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="25dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/roboto_bold"
+            android:text="CHILD 3"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/imageViewBT3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:src="@drawable/ic_baseline_arrow_right_24" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutBT3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/choice3">
+
+        <EditText
+            android:id="@+id/etLastNameBT3"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/etbackground"
+            android:fontFamily="@font/roboto"
+            android:hint="@string/LastName"
+            android:inputType="text"
+            android:padding="20dp"
+            android:selectAllOnFocus="true"
+            android:textSize="8sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/etFirstNameBT3"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/etbackground"
+            android:fontFamily="@font/roboto"
+            android:hint="@string/Firstname"
+            android:inputType="text"
+            android:padding="20dp"
+            android:selectAllOnFocus="true"
+            android:textSize="8sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center_horizontal"
+            android:hint="Choose School Level"
+            app:boxStrokeColor="@color/bordercolor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <AutoCompleteTextView
+                android:id="@+id/actvLevelBT3"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/etbackground"
+                android:fontFamily="@font/roboto"
+                android:inputType="none"
+                android:textSize="8sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/addchildbackground"
+        android:backgroundTint="#60C57F"
+        android:src="@drawable/ic_baseline_add_24"
+        app:layout_constraintBottom_toTopOf="@+id/btSignUpParentNextFrag2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,6 +19,7 @@ import com.example.schoolisfun.R;
 import com.example.schoolisfun.data.ChildData;
 import com.example.schoolisfun.data.CourseContentData;
 import com.example.schoolisfun.data.RoomDB;
+import com.example.schoolisfun.data.RoomDBcontent;
 import com.example.schoolisfun.ui.login.LoginActivity;
 
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class ChildChoice extends Fragment {
     private ArrayList<String> chosenClasses;
 
     RoomDB database;
+    RoomDBcontent databaseContent;
     private List<ChildData> childDataList = new ArrayList<>();
 
     public ChildChoice() {
@@ -128,23 +130,23 @@ public class ChildChoice extends Fragment {
                     database.childDao().insert(childData);
 
                     if(classesCheckedItems[0]){
-                        createPhysicsCoursesDataBase(childData);
+                        //createPhysicsCoursesDataBase(childData);
                     }
 
                     if(classesCheckedItems[1]){
-                        createMathCoursesDataBase(childData);
+                        //createMathCoursesDataBase(childData);
                     }
 
                     if(classesCheckedItems[2]){
-                        createCSCoursesDataBase(childData);
+                        //createCSCoursesDataBase(childData);
                     }
 
                     if(classesCheckedItems[3]){
-                        createEnglishCoursesDataBase(childData);
+                        //createEnglishCoursesDataBase(childData);
                     }
 
                     if(classesCheckedItems[4]){
-                        createFrenchCoursesDataBase(childData);
+                        //createFrenchCoursesDataBase(childData);
                     }
                     Intent intent = new Intent(getActivity(), LoginActivity.class);
                     startActivity(intent);
@@ -172,7 +174,7 @@ public class ChildChoice extends Fragment {
         cc.setCourseName("Mathematics");
         cc.setUserID(database.childDao().findIdWithUserName(childData.getUserName()));
 
-        database.courseContentDao().insert(cc);
+        databaseContent.courseContentDao().insert(cc);
     }
 
     private void createFrenchCoursesDataBase(ChildData childData){
@@ -191,7 +193,7 @@ public class ChildChoice extends Fragment {
         cc.setCourseName("French");
         cc.setUserID(database.childDao().findIdWithUserName(childData.getUserName()));
 
-        database.courseContentDao().insert(cc);
+        databaseContent.courseContentDao().insert(cc);
     }
     private void createPhysicsCoursesDataBase(ChildData childData){
         CourseContentData cc = new CourseContentData();
@@ -209,7 +211,7 @@ public class ChildChoice extends Fragment {
         cc.setCourseName("Physics");
         cc.setUserID(database.childDao().findIdWithUserName(childData.getUserName()));
 
-        database.courseContentDao().insert(cc);
+        databaseContent.courseContentDao().insert(cc);
     }
 
     private void createCSCoursesDataBase(ChildData childData){
@@ -228,7 +230,7 @@ public class ChildChoice extends Fragment {
         cc.setCourseName("Computer Science");
         cc.setUserID(database.childDao().findIdWithUserName(childData.getUserName()));
 
-        database.courseContentDao().insert(cc);
+        databaseContent.courseContentDao().insert(cc);
     }
 
     private void createEnglishCoursesDataBase(ChildData childData){
@@ -247,11 +249,6 @@ public class ChildChoice extends Fragment {
         cc.setCourseName("English");
         cc.setUserID(database.childDao().findIdWithUserName(childData.getUserName()));
 
-        database.courseContentDao().insert(cc);
+        databaseContent.courseContentDao().insert(cc);
     }
-
-
-
-
-
 }

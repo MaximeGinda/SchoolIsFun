@@ -9,27 +9,28 @@ import android.widget.TextView;
 
 import com.example.schoolisfun.R;
 import com.example.schoolisfun.data.RoomDB;
+import com.example.schoolisfun.data.RoomDBcontent;
 
 import ru.noties.markwon.Markwon;
 
 
 public class CourseSummaryActivity extends AppCompatActivity {
 
-    RoomDB database;
+    RoomDBcontent databaseContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_summary);
 
-        database = RoomDB.getInstance(this);
+        databaseContent = RoomDBcontent.getInstance(this);
 
-        Markwon.setMarkdown((TextView) findViewById(R.id.text), database.courseContentDao().findSummaryWithID(getIntent().getIntExtra("id", 0),getIntent().getStringExtra("courseName")));
+        Markwon.setMarkdown((TextView) findViewById(R.id.text), databaseContent.courseContentDao().findSummaryWithID(getIntent().getIntExtra("id", 0),getIntent().getStringExtra("courseName")));
 
         findViewById(R.id.quit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                database.courseContentDao().updateBoolSummary(true, getIntent().getIntExtra("id", 0), getIntent().getStringExtra("courseName"));
+                databaseContent.courseContentDao().updateBoolSummary(true, getIntent().getIntExtra("id", 0), getIntent().getStringExtra("courseName"));
                 Intent coursePage = new Intent(CourseSummaryActivity.this, CourseActivity.class);
                 coursePage.putExtra("id", getIntent().getIntExtra("id", 0));
                 coursePage.putExtra("classe",getIntent().getIntExtra("classe", 0));

@@ -11,8 +11,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.schoolisfun.R;
+import com.example.schoolisfun.data.Converters;
 import com.example.schoolisfun.data.CourseContentData;
 import com.example.schoolisfun.data.RoomDB;
+import com.example.schoolisfun.data.RoomDBcontent;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
@@ -29,8 +31,9 @@ public class QuizActivity extends AppCompatActivity {
     int scoreThreshold = 4;
 
     // BDD
-    RoomDB database;
-    CourseContentData courseContentData;
+    RoomDBcontent databaseContent;
+    String className = "Mathematics";
+    ArrayList<String> quizData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +50,10 @@ public class QuizActivity extends AppCompatActivity {
         quizModelArrayList = new ArrayList<>();
 
         //Initialize database
-        database = RoomDB.getInstance(this);
-        courseContentData = new CourseContentData();
+        databaseContent = RoomDBcontent.getInstance(this);
+        Converters conv = new Converters();
+        quizData = (ArrayList<String>) databaseContent.courseContentDao().findQuizWithClassname(className);
+        quizData = conv.fromString(quizData.get(0));
 
         getQuizQuestion(quizModelArrayList);
 
@@ -120,7 +125,7 @@ public class QuizActivity extends AppCompatActivity {
         Button returnToCourseBtn = bottomSheetView.findViewById(R.id.btReturnToCourse);
         if (currentScore >= scoreThreshold) {
             scoreTV.setText("Your score is \n" + currentScore + "/" + nbQuestion + "\nCongratulations! You passed the Quiz!");
-            database.courseContentDao().updateBoolQuiz(true,getIntent().getIntExtra("id", 0), getIntent().getStringExtra("courseName"));
+            databaseContent.courseContentDao().updateBoolQuiz(true,getIntent().getIntExtra("id", 0), getIntent().getStringExtra("courseName"));
         } else {
             scoreTV.setText("Your score is \n" + currentScore + "/" + nbQuestion + "\nYou Failed! Please rety later! ");
         }
@@ -170,10 +175,8 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void getQuizQuestion(ArrayList<QuizModel> quizModelArrayList) {
-        quizModelArrayList.add(new QuizModel("1+1 = ?", "1", "2", "3", "4", "2"));
-        quizModelArrayList.add(new QuizModel("2*4 = ?", "16", "32", "8", "9", "8"));
-        quizModelArrayList.add(new QuizModel("5+5 = ?", "10", "25", "0", "15", "10"));
-        quizModelArrayList.add(new QuizModel("nombre de côtés d'un triangle ?", "1", "2", "3", "4", "3"));
-        quizModelArrayList.add(new QuizModel("1/3 = ?", "1", "3", "0.33", "4", "0.33"));
+        for (int i = 0; i < quizData.size(); i += 6) {
+            quizModelArrayList.add(new QuizModel(quizData.get(i), quizData.get(i + 1), quizData.get(i + 2), quizData.get(i + 3), quizData.get(i + 4), quizData.get(i + 5)));
+        }
     }
 }
