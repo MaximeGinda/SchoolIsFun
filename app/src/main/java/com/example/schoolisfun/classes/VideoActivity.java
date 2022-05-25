@@ -32,9 +32,24 @@ public class VideoActivity extends AppCompatActivity {
         //Set MediaController  to enable play, pause, forward, etc options.
         MediaController mediaController = new MediaController(this);
         mediaController.setAnchorView(videoView);
+        Uri uri = Uri.parse("");
 
         //Location of Media File
-        Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.cs_reseaux);
+        if(getIntent().getStringExtra("courseName").equals("Computer Science"))
+            uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.cs_reseaux);
+
+        if(getIntent().getStringExtra("courseName").equals("Mathematics"))
+            uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.math_decimaux);
+
+        if(getIntent().getStringExtra("courseName").equals("French"))
+            uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.french_determinants);
+
+        if(getIntent().getStringExtra("courseName").equals("English"))
+            uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.english_se_presenter);
+
+        if(getIntent().getStringExtra("courseName").equals("Physics"))
+            uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.phys_mouvement);
+
 
         //Starting VideView By Setting MediaController and URI
         videoView.setMediaController(mediaController);

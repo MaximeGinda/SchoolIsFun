@@ -110,22 +110,25 @@ public class SignUpActivity extends AppCompatActivity {
                 }
                 else{ // En tant que Parent
 
+
                     //Get string from edit text
                     String emailText = etEmail.getText().toString().trim();
                     String passwordText = etPassword.getText().toString().trim();
+                    if (database.childDao().findUserWithEmail(emailText).isEmpty()) {
+                        if (!emailText.equals("") && emailText.contains("@") && passwordText.length() > 5) {
+                            //When email and password are not empty and that email is not in database, Initialize main data
+                            ParentData parentData = new ParentData();
+                            parentData.setEmail(emailText);
+                            parentData.setPassword(passwordText);
 
-                    if (!emailText.equals("") && emailText.contains("@") && passwordText.length() > 5) {
-                        //When email and password are not empty and that email is not in database, Initialize main data
-                        ParentData parentData = new ParentData();
-                        parentData.setEmail(emailText);
-                        parentData.setPassword(passwordText);
-
-                        Intent intent = new Intent(SignUpActivity.this, ParentInformationActivity.class);
-                        intent.putExtra("parent_data", parentData);
-                        startActivity(intent);
-                    }
-                    else{
-                        Toast.makeText(SignUpActivity.this, "Email must have an \"@\" \nPWD -> at least 6 characters", Toast.LENGTH_SHORT).show();
+                            //Clear edit text of password
+                            etPassword.setText("");
+                            Intent intent = new Intent(SignUpActivity.this, ParentInformationActivity.class);
+                            intent.putExtra("parent_data", parentData);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(SignUpActivity.this, "Email must have an \"@\" \nPWD -> at least 6 characters", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             }
