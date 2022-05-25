@@ -27,7 +27,7 @@
         android:id="@+id/tvSignup2"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/roboto_bold"
         android:gravity="center_horizontal"
         android:text="@string/signUpParent"
@@ -77,7 +77,7 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="260dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/buttonchoice"
         android:clickable="true"
@@ -140,7 +140,7 @@
             android:id="@+id/etFirstNameBT1"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_weight="1"
             android:background="@drawable/etbackground"
             android:fontFamily="@font/roboto"
@@ -153,25 +153,67 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:hint="Choose School Level"
+                app:boxStrokeColor="@color/bordercolor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <AutoCompleteTextView
+                    android:id="@+id/actvLevelBT1"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/etbackground"
+                    android:fontFamily="@font/roboto"
+                    android:inputType="none"
+                    android:textSize="8sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btDialog2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FBFBFB"
+                android:fontFamily="@font/roboto"
+                android:text="@string/choiceClasses"
+                android:textAlignment="viewStart"
+                android:textAllCaps="false"
+                android:textColor="@color/textColor"
+                android:textSize="8sp" />
+
+        </LinearLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:gravity="center_horizontal"
-            android:hint="Choose School Level"
-            app:boxStrokeColor="@color/bordercolor"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:hint="Choose Plan">
 
             <AutoCompleteTextView
-                android:id="@+id/actvLevelBT1"
+                android:id="@+id/actvPlan"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/etbackground"
-                android:fontFamily="@font/roboto"
                 android:inputType="none"
                 android:textSize="8sp" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -186,7 +228,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="40dp"
         android:orientation="vertical"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/choice2">
@@ -224,25 +266,67 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:hint="Choose School Level"
+                app:boxStrokeColor="@color/bordercolor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <AutoCompleteTextView
+                    android:id="@+id/actvLevelBT2"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/etbackground"
+                    android:fontFamily="@font/roboto"
+                    android:inputType="none"
+                    android:textSize="8sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btDialog3"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FBFBFB"
+                android:fontFamily="@font/roboto"
+                android:text="@string/choiceClasses"
+                android:textAlignment="viewStart"
+                android:textAllCaps="false"
+                android:textColor="@color/textColor"
+                android:textSize="8sp" />
+
+        </LinearLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:gravity="center_horizontal"
-            android:hint="Choose School Level"
-            app:boxStrokeColor="@color/bordercolor"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:hint="Choose Plan">
 
             <AutoCompleteTextView
-                android:id="@+id/actvLevelBT2"
+                android:id="@+id/actvPlan2"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/etbackground"
-                android:fontFamily="@font/roboto"
                 android:inputType="none"
                 android:textSize="8sp" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -331,25 +415,67 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:hint="Choose School Level"
+                app:boxStrokeColor="@color/bordercolor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <AutoCompleteTextView
+                    android:id="@+id/actvLevelBT3"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/etbackground"
+                    android:fontFamily="@font/roboto"
+                    android:inputType="none"
+                    android:textSize="8sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btDialog4"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FBFBFB"
+                android:fontFamily="@font/roboto"
+                android:text="@string/choiceClasses"
+                android:textAlignment="viewStart"
+                android:textAllCaps="false"
+                android:textColor="@color/textColor"
+                android:textSize="8sp" />
+
+        </LinearLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:gravity="center_horizontal"
-            android:hint="Choose School Level"
-            app:boxStrokeColor="@color/bordercolor"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:hint="Choose Plan">
 
             <AutoCompleteTextView
-                android:id="@+id/actvLevelBT3"
+                android:id="@+id/actvPlan3"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/etbackground"
-                android:fontFamily="@font/roboto"
                 android:inputType="none"
                 android:textSize="8sp" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -368,5 +494,32 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/addchildbackground"
+        android:backgroundTint="@color/math"
+        android:src="@drawable/ic_baseline_remove_24"
+        app:layout_constraintBottom_toTopOf="@+id/btSignUpParentNextFrag2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvAddChild"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Add or Remove child (MAX 3)"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btSignUpParentNextFrag2"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton2"
+        app:layout_constraintStart_toEndOf="@+id/imageButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

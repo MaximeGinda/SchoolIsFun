@@ -29,12 +29,10 @@ import com.example.schoolisfun.ui.login.LoginActivity;
 public class CourseActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
     LinearLayout courseSummary;
     LinearLayout video;
-    LinearLayout exercises;
     LinearLayout quiz;
 
     ImageView checked1;
     ImageView checked2;
-    ImageView checked3;
     ImageView checked4;
 
     // BDD
@@ -49,17 +47,14 @@ public class CourseActivity extends AppCompatActivity implements PopupMenu.OnMen
 
         courseSummary = (LinearLayout) findViewById(R.id.llSummary);
         video = (LinearLayout) findViewById(R.id.llVideo);
-        exercises = (LinearLayout) findViewById(R.id.llExercises);
         quiz = (LinearLayout) findViewById(R.id.llQuiz);
 
         checked1 = (ImageView) findViewById(R.id.checked1);
         checked2 = (ImageView) findViewById(R.id.checked2);
-        checked3 = (ImageView) findViewById(R.id.checked3);
         checked4 = (ImageView) findViewById(R.id.checked4);
 
-        ImageView fleche1 = (ImageView) findViewById(R.id.fleche1);
+        ImageView fleche1 = (ImageView) findViewById(R.id.fleche3);
         ImageView fleche2 = (ImageView) findViewById(R.id.fleche2);
-        ImageView fleche3 = (ImageView) findViewById(R.id.fleche3);
         ImageView fleche4 = (ImageView) findViewById(R.id.fleche4);
 
         //Initialize database
@@ -72,15 +67,23 @@ public class CourseActivity extends AppCompatActivity implements PopupMenu.OnMen
             title.setBackgroundColor(getResources().getColor(R.color.physics));
             courseSummary.setBackground(getResources().getDrawable(R.drawable.buttonphysics));
             video.setBackground(getResources().getDrawable(R.drawable.buttonphysics));
-            exercises.setBackground(getResources().getDrawable(R.drawable.buttonphysics));
             quiz.setBackground(getResources().getDrawable(R.drawable.buttonphysics));
 
             fleche1.setImageResource(R.drawable.physics);
             fleche2.setImageResource(R.drawable.physics);
-            fleche3.setImageResource(R.drawable.physics);
             fleche4.setImageResource(R.drawable.physics);
 
             nameClasse = "Physics";
+
+            if (database.childDao().findboolSPWithId(getIntent().getIntExtra("id", 0))){
+                checked1.setImageResource(R.drawable.checked);
+            }
+            if (database.childDao().findboolVPWithId(getIntent().getIntExtra("id", 0))){
+                checked2.setImageResource(R.drawable.checked);
+            }
+            if (database.childDao().findboolQPWithId(getIntent().getIntExtra("id", 0))){
+                checked4.setImageResource(R.drawable.checked);
+            }
         }
         else if(getIntent().getIntExtra("classe", 0) == 2){
             title.setText("Mathematics");
@@ -88,15 +91,23 @@ public class CourseActivity extends AppCompatActivity implements PopupMenu.OnMen
 
             courseSummary.setBackground(getResources().getDrawable(R.drawable.buttonmaths));
             video.setBackground(getResources().getDrawable(R.drawable.buttonmaths));
-            exercises.setBackground(getResources().getDrawable(R.drawable.buttonmaths));
             quiz.setBackground(getResources().getDrawable(R.drawable.buttonmaths));
 
-            fleche1.setImageResource(R.drawable.right_math);
             fleche2.setImageResource(R.drawable.right_math);
-            fleche3.setImageResource(R.drawable.right_math);
+            fleche1.setImageResource(R.drawable.right_math);
             fleche4.setImageResource(R.drawable.right_math);
 
             nameClasse = "Mathematics";
+
+            if (database.childDao().findboolSMWithId(getIntent().getIntExtra("id", 0))){
+                checked1.setImageResource(R.drawable.checked);
+            }
+            if (database.childDao().findboolVMWithId(getIntent().getIntExtra("id", 0))){
+                checked2.setImageResource(R.drawable.checked);
+            }
+            if (database.childDao().findboolQMWithId(getIntent().getIntExtra("id", 0))){
+                checked4.setImageResource(R.drawable.checked);
+            }
         }
         else if(getIntent().getIntExtra("classe", 0) == 3){
             title.setText("Computer Science");
@@ -104,15 +115,23 @@ public class CourseActivity extends AppCompatActivity implements PopupMenu.OnMen
 
             courseSummary.setBackground(getResources().getDrawable(R.drawable.buttoncs));
             video.setBackground(getResources().getDrawable(R.drawable.buttoncs));
-            exercises.setBackground(getResources().getDrawable(R.drawable.buttoncs));
             quiz.setBackground(getResources().getDrawable(R.drawable.buttoncs));
 
             fleche1.setImageResource(R.drawable.cs);
             fleche2.setImageResource(R.drawable.cs);
-            fleche3.setImageResource(R.drawable.cs);
             fleche4.setImageResource(R.drawable.cs);
 
             nameClasse = "Computer Science";
+
+            if (database.childDao().findboolSCSWithId(getIntent().getIntExtra("id", 0))){
+                checked1.setImageResource(R.drawable.checked);
+            }
+            if (database.childDao().findboolVCSWithId(getIntent().getIntExtra("id", 0))){
+                checked2.setImageResource(R.drawable.checked);
+            }
+            if (database.childDao().findboolQCSWithId(getIntent().getIntExtra("id", 0))){
+                checked4.setImageResource(R.drawable.checked);
+            }
         }
         else if(getIntent().getIntExtra("classe", 0) == 4){
             title.setText("English");
@@ -120,15 +139,23 @@ public class CourseActivity extends AppCompatActivity implements PopupMenu.OnMen
 
             courseSummary.setBackground(getResources().getDrawable(R.drawable.buttonenglish));
             video.setBackground(getResources().getDrawable(R.drawable.buttonenglish));
-            exercises.setBackground(getResources().getDrawable(R.drawable.buttonenglish));
             quiz.setBackground(getResources().getDrawable(R.drawable.buttonenglish));
 
             fleche1.setImageResource(R.drawable.english);
             fleche2.setImageResource(R.drawable.english);
-            fleche3.setImageResource(R.drawable.english);
             fleche4.setImageResource(R.drawable.english);
 
             nameClasse = "English";
+
+            if (database.childDao().findboolSEWithId(getIntent().getIntExtra("id", 0))){
+                checked1.setImageResource(R.drawable.checked);
+            }
+            if (database.childDao().findboolVEWithId(getIntent().getIntExtra("id", 0))){
+                checked2.setImageResource(R.drawable.checked);
+            }
+            if (database.childDao().findboolQEWithId(getIntent().getIntExtra("id", 0))){
+                checked4.setImageResource(R.drawable.checked);
+            }
         }
         else if(getIntent().getIntExtra("classe", 0) == 5){
             title.setText("French");
@@ -136,28 +163,23 @@ public class CourseActivity extends AppCompatActivity implements PopupMenu.OnMen
 
             courseSummary.setBackground(getResources().getDrawable(R.drawable.buttonfrench));
             video.setBackground(getResources().getDrawable(R.drawable.buttonfrench));
-            exercises.setBackground(getResources().getDrawable(R.drawable.buttonfrench));
             quiz.setBackground(getResources().getDrawable(R.drawable.buttonfrench));
 
             fleche1.setImageResource(R.drawable.french);
             fleche2.setImageResource(R.drawable.french);
-            fleche3.setImageResource(R.drawable.french);
             fleche4.setImageResource(R.drawable.french);
 
             nameClasse = "French";
-        }
 
-        if (databaseContent.courseContentDao().findboolSummaryWithID(getIntent().getIntExtra("id", 0),nameClasse )) {
-            checked1.setImageResource(R.drawable.checked);
-        }
-        if (databaseContent.courseContentDao().findboolVideoWithID(getIntent().getIntExtra("id", 0),nameClasse)) {
-            checked2.setImageResource(R.drawable.checked);
-        }
-        if (databaseContent.courseContentDao().findboolExerciseWithID(getIntent().getIntExtra("id", 0),nameClasse)) {
-            checked3.setImageResource(R.drawable.checked);
-        }
-        if (databaseContent.courseContentDao().findboolQuizWithID(getIntent().getIntExtra("id", 0), nameClasse)) {
-            checked4.setImageResource(R.drawable.checked);
+            if (database.childDao().findboolSFWithId(getIntent().getIntExtra("id", 0))){
+                checked1.setImageResource(R.drawable.checked);
+            }
+            if (database.childDao().findboolVFWithId(getIntent().getIntExtra("id", 0))){
+                checked2.setImageResource(R.drawable.checked);
+            }
+            if (database.childDao().findboolQFWithId(getIntent().getIntExtra("id", 0))){
+                checked4.setImageResource(R.drawable.checked);
+            }
         }
 
         courseSummary.setOnClickListener(new View.OnClickListener() {
@@ -180,6 +202,18 @@ public class CourseActivity extends AppCompatActivity implements PopupMenu.OnMen
                 intentQuiz.putExtra("courseName", nameClasse);
                 intentQuiz.putExtra("classe",getIntent().getIntExtra("classe", 0));
                 startActivity(intentQuiz);
+                finish();
+            }
+        });
+
+        video.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent videoActivity = new Intent(CourseActivity.this, VideoActivity.class);
+                videoActivity.putExtra("id", getIntent().getIntExtra("id", 0));
+                videoActivity.putExtra("courseName", nameClasse);
+                videoActivity.putExtra("classe",getIntent().getIntExtra("classe", 0));
+                startActivity(videoActivity);
                 finish();
             }
         });

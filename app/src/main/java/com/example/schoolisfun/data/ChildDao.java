@@ -8,6 +8,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.RoomWarnings;
 import androidx.room.Update;
 
 import java.util.ArrayList;
@@ -66,4 +67,95 @@ public interface ChildDao {
 
     @Query("SELECT premiumPlan FROM Child Where childID LIKE :id")
     boolean findPremiumWithId(int id);
+
+    @Query("SELECT boolQM FROM child Where childID LIKE :id")
+    boolean findboolQMWithId(int id);
+
+    @Query("SELECT boolQCS FROM child Where childID LIKE :id")
+    boolean findboolQCSWithId(int id);
+
+    @Query("SELECT boolQP FROM child Where childID LIKE :id")
+    boolean findboolQPWithId(int id);
+
+    @Query("SELECT boolQE FROM child Where childID LIKE :id")
+    boolean findboolQEWithId(int id);
+
+    @Query("SELECT boolQF FROM child Where childID LIKE :id")
+    boolean findboolQFWithId(int id);
+
+    @Query("SELECT boolSM FROM child Where childID LIKE :id")
+    boolean findboolSMWithId(int id);
+
+    @Query("SELECT boolSCS FROM child Where childID LIKE :id")
+    boolean findboolSCSWithId(int id);
+
+    @Query("SELECT boolSP FROM child Where childID LIKE :id")
+    boolean findboolSPWithId(int id);
+
+    @Query("SELECT boolSE FROM child Where childID LIKE :id")
+    boolean findboolSEWithId(int id);
+
+    @Query("SELECT boolSF FROM child Where childID LIKE :id")
+    boolean findboolSFWithId(int id);
+
+    @Query("SELECT boolVM FROM child Where childID LIKE :id")
+    boolean findboolVMWithId(int id);
+
+    @Query("SELECT boolVCS FROM child Where childID LIKE :id")
+    boolean findboolVCSWithId(int id);
+
+    @Query("SELECT boolVP FROM child Where childID LIKE :id")
+    boolean findboolVPWithId(int id);
+
+    @Query("SELECT boolVE FROM child Where childID LIKE :id")
+    boolean findboolVEWithId(int id);
+
+    @Query("SELECT boolVF FROM child Where childID LIKE :id")
+    boolean findboolVFWithId(int id);
+
+    @Query("UPDATE Child SET boolQM = :bool Where childID LIKE :id")
+    void updateboolQMWithId(int id, boolean bool);
+
+    @Query("UPDATE Child SET boolQCS = :bool Where childID LIKE :id")
+    void updateboolQCSWithId(int id, boolean bool);
+
+    @Query("UPDATE Child SET boolQP = :bool Where childID LIKE :id")
+    void updateboolQPWithId(int id, boolean bool);
+
+    @Query("UPDATE Child SET boolQE = :bool Where childID LIKE :id")
+    void updateboolQEWithId(int id, boolean bool);
+
+    @Query("UPDATE Child SET boolQF = :bool Where childID LIKE :id")
+    void updateboolQFWithId(int id, boolean bool);
+
+    @Query("UPDATE Child SET boolSM = :bool Where childID LIKE :id")
+    void updateboolSMWithId(int id, boolean bool);
+
+    @Query("UPDATE Child SET boolSCS = :bool Where childID LIKE :id")
+    void updateboolSCSWithId(int id, boolean bool);
+
+    @Query("UPDATE Child SET boolSP = :bool Where childID LIKE :id")
+    void updateboolSPWithId(int id, boolean bool);
+
+    @Query("UPDATE Child SET boolSE = :bool Where childID LIKE :id")
+    void updateboolSEWithId(int id, boolean bool);
+
+    @Query("UPDATE Child SET boolSF = :bool Where childID LIKE :id")
+    void updateboolSFWithId(int id, boolean bool);
+
+    @Query("UPDATE Child SET boolVM = :bool Where childID LIKE :id")
+    void updateboolVMWithId(int id, boolean bool);
+
+    @Query("UPDATE Child SET boolVCS = :bool Where childID LIKE :id")
+    void updateboolVCSWithId(int id, boolean bool);
+
+    @Query("UPDATE Child SET boolVP = :bool Where childID LIKE :id")
+    void updateboolVPWithId(int id, boolean bool);
+
+    @Query("UPDATE Child SET boolVE = :bool Where childID LIKE :id")
+    void updateboolVEWithId(int id, boolean bool);
+
+    @Query("UPDATE Child SET boolVF = :bool Where childID LIKE :id")
+    void updateboolVFWithId(int id, boolean bool);
+
 }

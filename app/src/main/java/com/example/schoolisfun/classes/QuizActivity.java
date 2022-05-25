@@ -18,6 +18,7 @@ import com.example.schoolisfun.data.RoomDBcontent;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class QuizActivity extends AppCompatActivity {
     private TextView questionTV, questionNumberTV;
@@ -32,14 +33,15 @@ public class QuizActivity extends AppCompatActivity {
 
     // BDD
     RoomDBcontent databaseContent;
-    String className = "Mathematics";
+    RoomDB database;
+    String className;
     ArrayList<String> quizData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-
+        className = getIntent().getStringExtra("courseName");
         //Initialize variables
         questionTV = findViewById(R.id.tvQuestion);
         questionNumberTV = findViewById(R.id.tvQuestionAttempted);
@@ -51,6 +53,7 @@ public class QuizActivity extends AppCompatActivity {
 
         //Initialize database
         databaseContent = RoomDBcontent.getInstance(this);
+        database = RoomDB.getInstance(this);
         Converters conv = new Converters();
         quizData = (ArrayList<String>) databaseContent.courseContentDao().findQuizWithClassname(className);
         quizData = conv.fromString(quizData.get(0));
@@ -125,7 +128,22 @@ public class QuizActivity extends AppCompatActivity {
         Button returnToCourseBtn = bottomSheetView.findViewById(R.id.btReturnToCourse);
         if (currentScore >= scoreThreshold) {
             scoreTV.setText("Your score is \n" + currentScore + "/" + nbQuestion + "\nCongratulations! You passed the Quiz!");
-            databaseContent.courseContentDao().updateBoolQuiz(true,getIntent().getIntExtra("id", 0), getIntent().getStringExtra("courseName"));
+
+            if(getIntent().getStringExtra("courseName").equals("Computer Science"))
+                database.childDao().updateboolQCSWithId(getIntent().getIntExtra("id", 0),true);
+
+            if(getIntent().getStringExtra("courseName").equals("Mathematics"))
+                database.childDao().updateboolQMWithId(getIntent().getIntExtra("id", 0),true);
+
+            if(getIntent().getStringExtra("courseName").equals("French"))
+                database.childDao().updateboolQFWithId(getIntent().getIntExtra("id", 0),true);
+
+            if(getIntent().getStringExtra("courseName").equals("English"))
+                database.childDao().updateboolQEWithId(getIntent().getIntExtra("id", 0),true);
+
+            if(getIntent().getStringExtra("courseName").equals("Physics"))
+                database.childDao().updateboolQPWithId(getIntent().getIntExtra("id", 0),true);
+
         } else {
             scoreTV.setText("Your score is \n" + currentScore + "/" + nbQuestion + "\nYou Failed! Please rety later! ");
         }

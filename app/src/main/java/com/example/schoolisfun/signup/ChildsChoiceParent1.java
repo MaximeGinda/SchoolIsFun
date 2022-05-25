@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -31,6 +32,7 @@ public class ChildsChoiceParent1 extends Fragment {
     private AutoCompleteTextView actvLevel2;
     private AutoCompleteTextView actvLevel3;
     private ArrayList<String> chosenClasses;
+    private int count = 1;
 
     public ChildsChoiceParent1() {
         // Required empty public constructor
@@ -106,7 +108,7 @@ public class ChildsChoiceParent1 extends Fragment {
                     final ViewGroup.MarginLayoutParams lpt =(ViewGroup.MarginLayoutParams)choice2.getLayoutParams();
                     int dpLeft = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30, getResources().getDisplayMetrics());
                     int dpRight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30, getResources().getDisplayMetrics());
-                    int dpTop = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, getResources().getDisplayMetrics());
+                    int dpTop = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 260, getResources().getDisplayMetrics());
                     lpt.setMargins(dpLeft,dpTop,dpRight,0);
 
                     final ViewGroup.MarginLayoutParams lpt2 =(ViewGroup.MarginLayoutParams)choice3.getLayoutParams();
@@ -150,7 +152,7 @@ public class ChildsChoiceParent1 extends Fragment {
                     final ViewGroup.MarginLayoutParams lpt =(ViewGroup.MarginLayoutParams)choice3.getLayoutParams();
                     int dpLeft = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30, getResources().getDisplayMetrics());
                     int dpRight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30, getResources().getDisplayMetrics());
-                    int dpTop = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, getResources().getDisplayMetrics());
+                    int dpTop = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 260, getResources().getDisplayMetrics());
                     lpt.setMargins(dpLeft,dpTop,dpRight,0);
 
                     final ViewGroup.MarginLayoutParams lpt2 =(ViewGroup.MarginLayoutParams)choice2.getLayoutParams();
@@ -215,6 +217,50 @@ public class ChildsChoiceParent1 extends Fragment {
             }
         });
 
+        ImageButton ib = (ImageButton) v.findViewById(R.id.imageButton);
+
+        ib.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(count < 3){
+                    count++;
+                }
+
+                if(count == 2){
+                    l2.setVisibility(View.VISIBLE);
+                    choice2.setVisibility(View.VISIBLE);
+                }
+
+                if(count == 3){
+                    l3.setVisibility(View.VISIBLE);
+                    choice3.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        ImageButton ib2 = (ImageButton) v.findViewById(R.id.imageButton2);
+
+        ib2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(count > 1){
+                    count--;
+                }
+
+                if(count == 2){
+                    l3.setVisibility(View.INVISIBLE);
+                    choice3.setVisibility(View.INVISIBLE);
+
+                }
+
+                if(count == 1){
+                    l3.setVisibility(View.INVISIBLE);
+                    choice3.setVisibility(View.INVISIBLE);
+                    l2.setVisibility(View.INVISIBLE);
+                    choice2.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
 
         return v;
     }

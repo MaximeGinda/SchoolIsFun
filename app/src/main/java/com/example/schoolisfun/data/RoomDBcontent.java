@@ -9,7 +9,7 @@ import androidx.room.TypeConverters;
 
 //Add database entities
 
-@Database(entities = {CourseContentData.class}, version = 1, exportSchema = false)
+@Database(entities = {CourseContentData.class}, version = 2, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract class RoomDBcontent extends RoomDatabase {
     //Create database instance
