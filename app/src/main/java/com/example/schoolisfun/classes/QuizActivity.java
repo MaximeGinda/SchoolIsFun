@@ -49,6 +49,38 @@ public class QuizActivity extends AppCompatActivity {
         option2Btn = findViewById(R.id.btOption2);
         option3Btn = findViewById(R.id.btOption3);
         option4Btn = findViewById(R.id.btOption4);
+
+        if(className.contains("Computer Science")){
+            option1Btn.setBackgroundColor(getResources().getColor(R.color.cs));
+            option2Btn.setBackgroundColor(getResources().getColor(R.color.cs));
+            option3Btn.setBackgroundColor(getResources().getColor(R.color.cs));
+            option4Btn.setBackgroundColor(getResources().getColor(R.color.cs));
+        }
+        else if(className.contains("Mathematics")){
+            option1Btn.setBackgroundColor(getResources().getColor(R.color.math));
+            option2Btn.setBackgroundColor(getResources().getColor(R.color.math));
+            option3Btn.setBackgroundColor(getResources().getColor(R.color.math));
+            option4Btn.setBackgroundColor(getResources().getColor(R.color.math));
+        }
+        else if(className.contains("Physics")){
+            option1Btn.setBackgroundColor(getResources().getColor(R.color.physics));
+            option2Btn.setBackgroundColor(getResources().getColor(R.color.physics));
+            option3Btn.setBackgroundColor(getResources().getColor(R.color.physics));
+            option4Btn.setBackgroundColor(getResources().getColor(R.color.physics));
+        }
+        else if(className.contains("English")){
+            option1Btn.setBackgroundColor(getResources().getColor(R.color.english));
+            option2Btn.setBackgroundColor(getResources().getColor(R.color.english));
+            option3Btn.setBackgroundColor(getResources().getColor(R.color.english));
+            option4Btn.setBackgroundColor(getResources().getColor(R.color.english));
+        }
+        else if(className.contains("French")){
+            option1Btn.setBackgroundColor(getResources().getColor(R.color.french));
+            option2Btn.setBackgroundColor(getResources().getColor(R.color.french));
+            option3Btn.setBackgroundColor(getResources().getColor(R.color.french));
+            option4Btn.setBackgroundColor(getResources().getColor(R.color.french));
+        }
+
         quizModelArrayList = new ArrayList<>();
 
         //Initialize database
