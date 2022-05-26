@@ -3,9 +3,12 @@ package com.example.schoolisfun;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatRadioButton;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuInflater;
@@ -32,7 +35,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private LinearLayout layoutClasses;
     private LinearLayout layoutChatPremium;
     private LinearLayout layoutChatNotPremium;
-
+    private LinearLayout layoutChatOffline;
+    private Boolean isOffline = false;
 
     // données de l'utilisateur
     private int UserId;
@@ -71,6 +75,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         layoutClasses = (LinearLayout) findViewById(R.id.classes);
         layoutChatPremium = (LinearLayout) findViewById(R.id.chatP);
         layoutChatNotPremium = (LinearLayout) findViewById(R.id.chat);
+        layoutChatOffline = (LinearLayout) findViewById(R.id.chatOffline);
 
         LinearLayout one = findViewById(R.id.id1);
         one.setOnClickListener(this); // calling onClick() method
@@ -82,6 +87,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         Four.setOnClickListener(this);
         LinearLayout Five = findViewById(R.id.id5);
         Five.setOnClickListener(this);
+
 
         calculPourcentage();
         ProgressBar pbMath = (ProgressBar) findViewById(R.id.progressBarMath);
@@ -100,53 +106,43 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         pbFre.setProgress(percentageFre);
 
         // ------ PROGRESS BARS ----- ///
-        if(percentageMath > 68){
+        if (percentageMath > 68) {
             pbMath.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
-        }
-        else if(percentageMath > 35){
+        } else if (percentageMath > 35) {
             pbMath.setProgressTintList(ColorStateList.valueOf(Color.YELLOW));
-        }
-        else{
+        } else {
             pbMath.setProgressTintList(ColorStateList.valueOf(Color.RED));
         }
 
-        if(percentageCS > 68){
+        if (percentageCS > 68) {
             pbCS.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
-        }
-        else if(percentageCS > 35){
+        } else if (percentageCS > 35) {
             pbCS.setProgressTintList(ColorStateList.valueOf(Color.YELLOW));
-        }
-        else{
+        } else {
             pbCS.setProgressTintList(ColorStateList.valueOf(Color.RED));
         }
 
-        if(percentagePhy > 68){
+        if (percentagePhy > 68) {
             pbPhy.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
-        }
-        else if(percentagePhy > 35){
+        } else if (percentagePhy > 35) {
             pbPhy.setProgressTintList(ColorStateList.valueOf(Color.YELLOW));
-        }
-        else{
+        } else {
             pbPhy.setProgressTintList(ColorStateList.valueOf(Color.RED));
         }
 
-        if(percentageEng > 68){
+        if (percentageEng > 68) {
             pbEng.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
-        }
-        else if(percentageEng > 35){
+        } else if (percentageEng > 35) {
             pbEng.setProgressTintList(ColorStateList.valueOf(Color.YELLOW));
-        }
-        else{
+        } else {
             pbEng.setProgressTintList(ColorStateList.valueOf(Color.RED));
         }
 
-        if(percentageFre > 68){
+        if (percentageFre > 68) {
             pbFre.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
-        }
-        else if(percentageFre > 35){
+        } else if (percentageFre > 35) {
             pbFre.setProgressTintList(ColorStateList.valueOf(Color.YELLOW));
-        }
-        else {
+        } else {
             pbFre.setProgressTintList(ColorStateList.valueOf(Color.RED));
         }
     }
@@ -160,21 +156,37 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     // Si sélectionné
                     layoutClasses.setVisibility(View.VISIBLE);
 
-                    if (premium) {
-                        layoutChatPremium.setVisibility(View.INVISIBLE);
+                    if (isOffline) {
+                        layoutChatOffline.setVisibility(View.INVISIBLE);
                     } else {
-                        layoutChatNotPremium.setVisibility(View.INVISIBLE);
+                        if (premium) {
+                            layoutChatPremium.setVisibility(View.INVISIBLE);
+                        } else {
+                            layoutChatNotPremium.setVisibility(View.INVISIBLE);
+                        }
                     }
                     classes = true;
                 }
                 break;
             case R.id.rbChat:
+                // Check for internet connection
+                ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+                if (networkInfo != null && networkInfo.isConnected()) {
+                    isOffline = false;
+                } else {
+                    isOffline = true;
+                }
                 if (isSelected) {
                     // Si sélectionné
-                    if (premium) {
-                        layoutChatPremium.setVisibility(View.VISIBLE);
+                    if (isOffline) {
+                        layoutChatOffline.setVisibility(View.VISIBLE);
                     } else {
-                        layoutChatNotPremium.setVisibility(View.VISIBLE);
+                        if (premium) {
+                            layoutChatPremium.setVisibility(View.VISIBLE);
+                        } else {
+                            layoutChatNotPremium.setVisibility(View.VISIBLE);
+                        }
                     }
                     layoutClasses.setVisibility(View.INVISIBLE);
                     classes = false;
@@ -312,7 +324,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     // Calcul le pourcentage pour les progress bar
-    private void calculPourcentage(){
+    private void calculPourcentage() {
         percentageMath = 0;
         percentagePhy = 0;
         percentageEng = 0;
@@ -320,65 +332,65 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         percentageCS = 0;
 
         // ----- VIDEOS ----- //
-        if(database.childDao().findboolVMWithId(getIntent().getIntExtra("id", 0))){
+        if (database.childDao().findboolVMWithId(getIntent().getIntExtra("id", 0))) {
             percentageMath += 33;
         }
 
-        if(database.childDao().findboolVPWithId(getIntent().getIntExtra("id", 0))){
+        if (database.childDao().findboolVPWithId(getIntent().getIntExtra("id", 0))) {
             percentagePhy += 33;
         }
 
-        if(database.childDao().findboolVEWithId(getIntent().getIntExtra("id", 0))){
+        if (database.childDao().findboolVEWithId(getIntent().getIntExtra("id", 0))) {
             percentageEng += 33;
         }
 
-        if(database.childDao().findboolVFWithId(getIntent().getIntExtra("id", 0))){
+        if (database.childDao().findboolVFWithId(getIntent().getIntExtra("id", 0))) {
             percentageFre += 33;
         }
 
-        if(database.childDao().findboolVCSWithId(getIntent().getIntExtra("id", 0))){
+        if (database.childDao().findboolVCSWithId(getIntent().getIntExtra("id", 0))) {
             percentageCS += 33;
         }
 
         // ----- SUMMARY ----- //
-        if(database.childDao().findboolSMWithId(getIntent().getIntExtra("id", 0))){
+        if (database.childDao().findboolSMWithId(getIntent().getIntExtra("id", 0))) {
             percentageMath += 33;
         }
 
-        if(database.childDao().findboolSPWithId(getIntent().getIntExtra("id", 0))){
+        if (database.childDao().findboolSPWithId(getIntent().getIntExtra("id", 0))) {
             percentagePhy += 33;
         }
 
-        if(database.childDao().findboolSEWithId(getIntent().getIntExtra("id", 0))){
+        if (database.childDao().findboolSEWithId(getIntent().getIntExtra("id", 0))) {
             percentageEng += 33;
         }
 
-        if(database.childDao().findboolSFWithId(getIntent().getIntExtra("id", 0))){
+        if (database.childDao().findboolSFWithId(getIntent().getIntExtra("id", 0))) {
             percentageFre += 33;
         }
 
-        if(database.childDao().findboolSCSWithId(getIntent().getIntExtra("id", 0))){
+        if (database.childDao().findboolSCSWithId(getIntent().getIntExtra("id", 0))) {
             percentageCS += 33;
         }
 
         // ----- QUIZ ----- //
-        if(database.childDao().findboolQMWithId(getIntent().getIntExtra("id", 0))){
+        if (database.childDao().findboolQMWithId(getIntent().getIntExtra("id", 0))) {
             percentageMath += 34;
         }
 
-        if(database.childDao().findboolQPWithId(getIntent().getIntExtra("id", 0))){
+        if (database.childDao().findboolQPWithId(getIntent().getIntExtra("id", 0))) {
             percentagePhy += 34;
         }
 
-        if(database.childDao().findboolQEWithId(getIntent().getIntExtra("id", 0))){
+        if (database.childDao().findboolQEWithId(getIntent().getIntExtra("id", 0))) {
             percentageEng += 34;
         }
 
-        if(database.childDao().findboolQFWithId(getIntent().getIntExtra("id", 0))){
+        if (database.childDao().findboolQFWithId(getIntent().getIntExtra("id", 0))) {
             percentageFre += 34;
         }
 
-        if(database.childDao().findboolQCSWithId(getIntent().getIntExtra("id", 0))){
+        if (database.childDao().findboolQCSWithId(getIntent().getIntExtra("id", 0))) {
             percentageCS += 34;
         }
 
