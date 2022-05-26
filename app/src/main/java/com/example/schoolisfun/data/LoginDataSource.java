@@ -1,6 +1,6 @@
 package com.example.schoolisfun.data;
 
-import com.example.schoolisfun.data.model.LoggedInUser;
+import com.example.schoolisfun.ui.login.LoggedInUser;
 
 import java.io.IOException;
 

@@ -15,6 +15,7 @@
     <string name="hAccount">Already have an account ?</string>
     <string name="signUp">Sign Up</string>
     <string name="signUpChild">Sign Up As A Child</string>
+    <string name="signUpParent">Sign Up As A Parent</string>
     <string name="signIn">Sign In</string>
     <string name="or">Or</string>
     <string name="policy">I agree with Private Policy</string>
@@ -26,11 +27,20 @@
     <string name="Phonenumber">Phone Number (optionnal)</string>
     <string name="next">Next</string>
     <string name="childInfo">Child Informations</string>
+    <string name="parentInfo">Parent Informations</string>
+
     <string name="choiceClasses">Choice of classes</string>
     <string name="schoolYears">School Years :</string>
     <string name="schoolLevel">School Level :</string>
     <string name="choicePlans">Choice of plans</string>
     <string name="finish">Finish</string>
+    <string name="classes">Classes</string>
+    <string name="chat">Chat</string>
+    <string name="math">Mathematics</string>
+    <string name="ex">Exercises</string>
+    <string name="quizz">Quiz</string>
+    <string name="video">Video</string>
+    <string name="course">Course Summary</string>
 
     <string-array name="plan">
         <item>Progression Plan</item>
@@ -46,5 +56,10 @@
         <item>1ere</item>
         <item>terminale</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="restart_quiz">Restart Quiz</string>
+    <string name="return_to_course_page">Return to Course Page</string>
+    <string name="your_score_is">Your Score is</string>
 
 </resources>

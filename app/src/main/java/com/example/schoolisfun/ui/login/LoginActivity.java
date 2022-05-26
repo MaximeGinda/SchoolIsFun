@@ -14,19 +14,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.schoolisfun.R;
 import com.example.schoolisfun.HomeActivity;
-import com.example.schoolisfun.SignUpActivity;
+import com.example.schoolisfun.data.CourseContentData;
+import com.example.schoolisfun.data.RoomDBcontent;
+import com.example.schoolisfun.signup.SignUpActivity;
 import com.example.schoolisfun.data.ChildData;
 import com.example.schoolisfun.data.RoomDB;
 import com.example.schoolisfun.databinding.ActivityLoginBinding;
@@ -39,9 +40,12 @@ public class LoginActivity extends AppCompatActivity {
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
 
-    RoomDB database;
-    List<ChildData> childDataList = new ArrayList<>();
+    public int userId;
 
+    RoomDB database;
+    RoomDBcontent databaseContent;
+    List<ChildData> childDataList = new ArrayList<>();
+    List<CourseContentData> courseContentDataList = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,13 +60,15 @@ public class LoginActivity extends AppCompatActivity {
         final EditText usernameEditText = binding.username;
         final EditText passwordEditText = binding.password;
         final Button loginButton = binding.login;
-        final ProgressBar loadingProgressBar = binding.loading;
+        //final ProgressBar loadingProgressBar = binding.loading;
         final TextView signUp = binding.signup;
 
         //Initialize database
         database = RoomDB.getInstance(this);
+        databaseContent = RoomDBcontent.getInstance(this);
         //Store database value in data list
         childDataList = database.childDao().getAll();
+        courseContentDataList = databaseContent.courseContentDao().getAll();
 
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
@@ -87,12 +93,9 @@ public class LoginActivity extends AppCompatActivity {
                 if (loginResult == null) {
                     return;
                 }
-                loadingProgressBar.setVisibility(View.GONE);
+                //loadingProgressBar.setVisibility(View.GONE);
                 if (loginResult.getError() != null) {
                     showLoginFailed(loginResult.getError());
-                }
-                if (loginResult.getSuccess() != null) {
-                    updateUiWithUser(loginResult.getSuccess());
                 }
                 setResult(Activity.RESULT_OK);
 
@@ -135,15 +138,24 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                loadingProgressBar.setVisibility(View.VISIBLE);
-//                loginViewModel.login(usernameEditText.getText().toString(),
-//                        passwordEditText.getText().toString());
+
                 if (!database.childDao().findUserWithEmailAndPassword(usernameEditText.getText().toString(), passwordEditText.getText().toString()).isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_LONG).show();
+                    userId = database.childDao().findIdWithEmail(usernameEditText.getText().toString());
+                    // Lance l'activité post-login
+
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    intent.putExtra("id", userId);
+                    startActivity(intent);
+                }else if(!database.childDao().findUserWithUserNameAndPassword(usernameEditText.getText().toString(), passwordEditText.getText().toString()).isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_LONG).show();
+                    userId = database.childDao().findIdWithUserName(usernameEditText.getText().toString());
                     // Lance l'activité post-login
                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    intent.putExtra("id", userId);
                     startActivity(intent);
-                } else {
+                }
+                else{
                     Toast.makeText(getApplicationContext(), "The email address or password is incorrect. Please retry...", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -155,18 +167,18 @@ public class LoginActivity extends AppCompatActivity {
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
                 startActivity(intent);
+                finish();
                 return true;
             }
         });
     }
 
-    private void updateUiWithUser(LoggedInUserView model) {
-        String welcome = getString(R.string.welcome) + model.getDisplayName();
-        // TODO : initiate successful logged in experience
-        Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
-    }
-
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        return;
     }
 }

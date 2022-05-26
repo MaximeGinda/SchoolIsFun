@@ -8,8 +8,15 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="main">#3EA6F2</color>
+    <color name="green">#60C57F</color>
+    <color name="lightGrey">#F0F0F0</color>
     <color name="bordercolor">#E2E6EA</color>
     <color name="textColor">#696969</color>
     <color name="transparent">#00ffffff</color>
     <color name="inactive">#C9C9C9</color>
+    <color name="math">#F94A4A</color>
+    <color name="cs">#0045FF</color>
+    <color name="english">#9B00FC</color>
+    <color name="french">#18B112</color>
+    <color name="physics">#FCAE00</color>
 </resources>

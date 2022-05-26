@@ -1,6 +1,6 @@
 package com.example.schoolisfun.data;
 
-import com.example.schoolisfun.data.model.LoggedInUser;
+import com.example.schoolisfun.ui.login.LoggedInUser;
 
 /**
  * Class that requests authentication and user information from the remote data source and

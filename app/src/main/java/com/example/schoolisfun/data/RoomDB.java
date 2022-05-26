@@ -33,5 +33,5 @@ public abstract class RoomDB extends RoomDatabase {
 
     //Create DAO
     public abstract ChildDao childDao();
-//    public abstract ParentDao parentDao();
+    //    public abstract ParentDao parentDao();
 }
